@@ -67,16 +67,15 @@ function getQuantity($connect, $food_id)
             $query2 = "SELECT * FROM cart ORDER BY cart_id";
             $result2 = mysqli_query($connect, $query2);
             $cart_string = "";
+            $total = 0;
             if (mysqli_num_rows($result2) > 0):
             while ($row2 = mysqli_fetch_array($result2)):
                 $food_id = $row2['food_id'];
                 $cart_string = $cart_string . $food_id;
-                if (substr_count($cart_string, $food_id) == 1):
+                if (substr_count($cart_string, $food_id) == 1): //Condition to handle showing duplicated food.
                     $query = "SELECT * FROM foods WHERE food_id = $food_id";
                     $result = mysqli_query($connect, $query);
                     $row = mysqli_fetch_array($result);
-
-                    $total = 0;
                     ?>
                     <div class="panel-body">
                         <div class="row">
@@ -95,8 +94,8 @@ function getQuantity($connect, $food_id)
                                 </div>
                                 <form id="cartForm" method="post">
                                     <div class="col-xs-4">
-                                        <input type="number" class="form-control input-md"
-                                               value="<?= getQuantity($connect, $food_id); ?>">
+                                        <input id="inputQuantity" type="number" class="form-control input-md"
+                                               value="<?= getQuantity($connect, $food_id); ?>" min="1">
                                     </div>
                                     <div class="col-xs-2">
                                         <input type="hidden" name="food_id" value="<?= $row['food_id'] ?>">
@@ -117,7 +116,7 @@ function getQuantity($connect, $food_id)
             <div class="panel-footer">
                 <div class="row text-center">
                     <div class="col-xs-9">
-                        <h4 class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
+                        <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
                     </div>
                     <div class="col-xs-3">
                         <button type="button" class="btn btn-success btn-block">
@@ -155,6 +154,18 @@ function getQuantity($connect, $food_id)
                 alert(data);
                 window.location.reload();
             });
+        });
+
+        $("#inputQuantity").change(function () {
+            var direction = this.defaultValue < this.value;
+            this.defaultValue = this.value;
+            if (direction) {
+//                alert("increase!");
+            }
+            else {
+//                alert("decrease!");
+            }
+            $('#totalPrice').html("<a href='cart.php'>Click here to update total price</a>");
         });
     });
 </script>
