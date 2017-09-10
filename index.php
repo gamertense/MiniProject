@@ -82,7 +82,6 @@
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
                         <h5 class="text-info"><?php echo $row["name"]; ?></h5>
                         <h5 class="text-danger">฿ <?php echo $row["price"]; ?></h5>
-                        <input type="hidden" name="hidden_id" value="<?php echo $row["food_id"]; ?>">
                         <button name="addButton" style="margin-top:5px;" class="btn btn-success"
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
                         </button>
