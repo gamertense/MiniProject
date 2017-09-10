@@ -44,110 +44,111 @@ function getQuantity($connect, $food_id)
     </div>
 </nav>
 
-<div class="container" style="width:60%;">
-    <div class="col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-                        </div>
-                        <div class="col-xs-6">
-                            <a href="index.php">
-                                <button type="button" class="btn btn-primary btn-sm btn-block">
-                                    <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-                                </button>
-                            </a>
+<form id="cartForm" method="post">
+    <div class="container" style="width:60%;">
+        <div class="col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="index.php">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block">
+                                        <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php
-            $query2 = "SELECT * FROM cart ORDER BY cart_id";
-            $result2 = mysqli_query($connect, $query2);
-            $cart_string = "";
-            $total = 0;
-            if (mysqli_num_rows($result2) > 0):
-            while ($row2 = mysqli_fetch_array($result2)):
-                $food_id = $row2['food_id'];
-                $cart_string = $cart_string . $food_id;
-                if (substr_count($cart_string, $food_id) == 1): //Condition to handle showing duplicated food.
-                    $query = "SELECT * FROM foods WHERE food_id = $food_id";
-                    $result = mysqli_query($connect, $query);
-                    $row = mysqli_fetch_array($result);
-                    ?>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
-                            </div>
-                            <div class="col-xs-4">
-                                <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
-                                <h4>
-                                    <small>Food description</small>
-                                </h4>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="col-xs-6 text-right">
-                                    <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
-                                    </h5>
+                <?php
+                $query2 = "SELECT * FROM cart ORDER BY cart_id";
+                $result2 = mysqli_query($connect, $query2);
+                $cart_string = "";
+                $total = 0;
+                if (mysqli_num_rows($result2) > 0):
+                while ($row2 = mysqli_fetch_array($result2)):
+                    $food_id = $row2['food_id'];
+                    $cart_string = $cart_string . $food_id;
+                    if (substr_count($cart_string, $food_id) == 1): //Condition to handle showing duplicated food.
+                        $query = "SELECT * FROM foods WHERE food_id = $food_id";
+                        $result = mysqli_query($connect, $query);
+                        $row = mysqli_fetch_array($result);
+                        ?>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
                                 </div>
-                                <form id="cartForm" method="post">
+                                <div class="col-xs-4">
+                                    <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
+                                    <h4>
+                                        <small>Food description</small>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="col-xs-6 text-right">
+                                        <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
+                                        </h5>
+                                    </div>
+
                                     <div class="col-xs-4">
                                         <input id="inputQuantity" type="number" class="form-control input-md"
                                                value="<?= getQuantity($connect, $food_id); ?>" min="1">
                                     </div>
                                     <div class="col-xs-2">
-                                        <input type="hidden" name="food_id" value="<?= $row['food_id'] ?>">
-                                        <button id="remove_button" type="button" class="btn btn-danger">
+                                        <button name="removeButton" value="<?= $row['food_id'] ?>"
+                                                class="btn btn-danger">
                                             <span class="glyphicon glyphicon-trash"> </span>
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
+                            <hr>
                         </div>
-                        <hr>
-                    </div>
-                    <?php
-                    $total += $row['price'] * getQuantity($connect, $food_id);
-                endif;
-            endwhile;
-            ?>
-            <div class="panel-footer">
-                <div class="row text-center">
-                    <div class="col-xs-9">
-                        <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="btn btn-success btn-block">
-                            Checkout
-                        </button>
+                        <?php
+                        $total += $row['price'] * getQuantity($connect, $food_id);
+                    endif;
+                endwhile;
+                ?>
+                <div class="panel-footer">
+                    <div class="row text-center">
+                        <div class="col-xs-9">
+                            <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-success btn-block">
+                                Checkout
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php
+        endif;
+        ?>
     </div>
-    <?php
-    endif;
-    ?>
-</div>
+</form>
 </body>
 </html>
 
 <script>
+    var foodID;
+
     $(document).ready(function () {
-        $('#remove_button').on('click', function (event) {
-            console.log("dfs");
+        $('button[name="removeButton"]').click(function () {
+            foodID = $(this).val();
+        });
+
+        $("#cartForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
 
-            // Get some values from elements on the page:
-            var $form = $("#cartForm"),
-                term = $form.find("input[name='food_id']").val(),
-                url = $form.attr("action");
-
             // Send the data using post
-            var posting = $.post("remove-cart.php", {food_id: term});
+            var posting = $.post("remove-cart.php", {food_id: foodID});
 
             // Put the results in a div
             posting.done(function (data) {
