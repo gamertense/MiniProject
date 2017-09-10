@@ -67,35 +67,60 @@
         $query = "SELECT * FROM foods WHERE name LIKE '%$input_product%'";
     }
 
-    $result = mysqli_query($connect, $query);
-    if (mysqli_num_rows($result) > 0):
-        while ($row = mysqli_fetch_array($result)):
-            ?>
-            <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
+    $result = mysqli_query($connect, $query); ?>
+    <form method="post" id="foodsForm">
+        <?php
+        if (mysqli_num_rows($result) > 0):
+            while ($row = mysqli_fetch_array($result)):
+                ?>
+                <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
 
-            <div class="col-md-6">
-                <form method="post" id="foodsForm">
+                <div class="col-md-6">
+
                     <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding:10px;"
                          align="center">
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
                         <h5 class="text-info"><?php echo $row["name"]; ?></h5>
-                        <h5 class="text-success">฿ <?php echo $row["price"]; ?></h5>
+                        <h5 class="text-danger">฿ <?php echo $row["price"]; ?></h5>
                         <input type="hidden" name="hidden_id" value="<?php echo $row["food_id"]; ?>">
-                        <input type="submit" id="add" style="margin-top:5px;" class="btn btn-success"
-                               value="Add to Cart">
+                        <button type="submit" style="margin-top:5px;" class="btn btn-success"
+                                value="<?php echo $row["food_id"]; ?>"> Add to Cart
+                        </button>
                     </div>
-                </form>
-            </div>
-            <?php
-        endwhile;
-    endif;
-    ?>
+
+                </div>
+                <?php
+            endwhile;
+        endif;
+        ?>
+    </form>
 </div>
 </body>
 </html>
 
 <script>
+    var foodID;
+
     $(document).ready(function () {
+        $('button[type="submit"]').click(function () {
+            foodID = $(this).val();
+        });
+
+        // Attach a submit handler to the form
+        $("#foodsForm").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            // Send the data using post
+            var posting = $.post("add-cart.php", {hidden_id: foodID});
+
+            // Put the results in a div
+            posting.done(function (data) {
+                alert(data);
+                location.reload();
+            });
+        });
+
         $.ajax // Insert all products into JSON file for appending in search suggestion.
         ({
             type: "GET",
@@ -132,25 +157,6 @@
             }
         });
 
-        // Attach a submit handler to the form
-        $("#foodsForm").submit(function (event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-
-            // Get some values from elements on the page:
-            var $form = $(this),
-                term = $form.find("input[name='hidden_id']").val(),
-                url = $form.attr("action");
-
-            // Send the data using post
-            var posting = $.post("add-cart.php", {hidden_id: term});
-
-            // Put the results in a div
-            posting.done(function (data) {
-                alert(data);
-                location.reload();
-            });
-        });
 
         $('#cartBtn').click(function () {
             window.location.replace("cart.php");
