@@ -31,6 +31,11 @@ function getQuantity($connect, $food_id)
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <button id="wishBtn" class="btn btn-default btn-lg btn-link">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+            </li>
+            <li>
                 <button id="cartBtn" class="btn btn-default btn-lg btn-link">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </button>
@@ -39,7 +44,9 @@ function getQuantity($connect, $food_id)
                     $result = mysqli_query($connect, $query);
                     $row = mysqli_fetch_array($result);
                     $items_count = $row['COUNT(cart_id)'];
-                    echo $items_count ?></span></li>
+                    echo $items_count ?>
+                </span>
+            </li>
         </ul>
     </div>
 </nav>
@@ -167,6 +174,14 @@ function getQuantity($connect, $food_id)
 //                alert("decrease!");
             }
             $('#totalPrice').html("<a href='cart.php'>Click here to update total price</a>");
+        });
+
+        $('#cartBtn').click(function () {
+            window.location.replace("cart.php");
+        });
+
+        $('#wishBtn').click(function () {
+            window.location.replace("wishlist.php");
         });
     });
 </script>

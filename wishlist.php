@@ -15,11 +15,7 @@
     </style>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
     <script src="js/bootstrap3-typeahead.min.js"></script>
-    <script>
-        var products_JSON = [];
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -44,14 +40,6 @@
                 <span class="badge badge-notify"><?php
                     //Append search suggestion.
                     include_once 'dbconfig.php';
-                    $query = "SELECT * FROM foods ORDER BY food_id";
-                    $result = mysqli_query($connect, $query);
-                    if (mysqli_num_rows($result) > 0):
-                        while ($row = mysqli_fetch_array($result)): ?>
-                            <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
-                            <?php
-                        endwhile;
-                    endif;
 
                     $query = "select COUNT(cart_id) from cart";
                     $result = mysqli_query($connect, $query);
@@ -65,29 +53,18 @@
 </nav>
 
 <div class="container" style="width:60%;">
-    <div class="input-group">
-        <input class="form-control" placeholder="Search" id="foodSearch" data-provide="typeahead"
-               autocomplete="off"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary" id="searchButton">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </div>
-    </div>
-    <h2 align="center">Select food</h2>
+    <h2 align="center">My wishlist</h2>
     <?php
-    if (!isset($_GET['input-product']))
-        $query = "SELECT * FROM foods ORDER BY food_id";
-    else {
-        $input_product = $_GET['input-product'];
-        $query = "SELECT * FROM foods WHERE name LIKE '%$input_product%'";
-    }
-
-    $result = mysqli_query($connect, $query); ?>
+    $query2 = "SELECT * FROM wishlist ORDER BY wishlist_id";
+    $result2 = mysqli_query($connect, $query2); ?>
     <form method="post" id="foodsForm">
         <?php
-        if (mysqli_num_rows($result) > 0):
-            while ($row = mysqli_fetch_array($result)):
+        if (mysqli_num_rows($result2) > 0):
+            while ($row2 = mysqli_fetch_array($result2)):
+                $food_id = $row2['food_id'];
+                $query = "SELECT * FROM foods WHERE food_id = $food_id";
+                $result = mysqli_query($connect, $query);
+                $row = mysqli_fetch_array($result);
                 ?>
                 <div class="col-md-6">
                     <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding:10px;"
@@ -97,9 +74,6 @@
                         <h5 class="text-danger">฿<?php echo $row["price"]; ?></h5>
                         <button name="addButton" style="margin-top:5px;" class="btn btn-success"
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
-                        </button>
-                        <button name="wishButton" style="margin-top:5px;" class="btn btn-info"
-                                value="<?php echo $row["food_id"]; ?>"> Add to Wishlist
                         </button>
                     </div>
 
@@ -126,21 +100,13 @@
         $('button[name="addButton"]').click(function () {
             foodID = $(this).val();
         });
-        $('button[name="wishButton"]').click(function () {
-            foodID = $(this).val();
-            btnString = 'wish';
-        });
 
         // Attach a submit handler to the form
         $("#foodsForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
 
-            // Send the data using post
-            if (btnString == 'cart')
-                var posting = $.post("add-cart.php", {hidden_id: foodID});
-            else
-                var posting = $.post("add-wishlist.php", {hidden_id: foodID});
+            var posting = $.post("add-cart.php", {hidden_id: foodID});
 
             // Put the results in a div
             posting.done(function (data) {
@@ -148,43 +114,6 @@
                 location.reload();
             });
         });
-
-        $.ajax // Insert all products into JSON file for appending in search suggestion.
-        ({
-            type: "GET",
-            dataType: 'json',
-            async: true,
-            url: 'create-json.php',
-            data: {data: JSON.stringify(products_JSON)},
-            success: function () {
-                console.log("Success!");
-            },
-            failure: function () {
-                alert("Error!");
-            }
-        });
-
-        // Append search suggestion from the created JSON file above.
-        var foodSearchSelector = $("#foodSearch");
-        $.get("results.json", function (data) {
-            foodSearchSelector.typeahead({source: data});
-        }, 'json');
-
-        // After user clicks the suggested one and hit 'enter' or 'search button'.
-        var inputVal = foodSearchSelector.val();
-        $("#searchButton").click(function () {
-            inputVal = foodSearchSelector.val();
-            window.location.href = "index.php?input-product=" + inputVal;
-        });
-
-        // When user types in the search box and hits the enter key.
-        foodSearchSelector.keypress(function (event) {
-            if (event.which == 13) {
-                inputVal = foodSearchSelector.val();
-                window.location.href = "index.php?input-product=" + inputVal;
-            }
-        });
-
 
         $('#cartBtn').click(function () {
             window.location.replace("cart.php");
