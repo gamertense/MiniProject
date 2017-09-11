@@ -94,6 +94,9 @@
                         <button name="addButton" style="margin-top:5px;" class="btn btn-success"
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
                         </button>
+                        <button name="wishButton" style="margin-top:5px;" class="btn btn-info"
+                                value="<?php echo $row["food_id"]; ?>"> Add to Wishlist
+                        </button>
                     </div>
 
                 </div>
@@ -107,11 +110,15 @@
 </html>
 
 <script>
-    var foodID;
+    var foodID, btnString = 'cart';
 
     $(document).ready(function () {
         $('button[name="addButton"]').click(function () {
             foodID = $(this).val();
+        });
+        $('button[name="wishButton"]').click(function () {
+            foodID = $(this).val();
+            btnString = 'wish';
         });
 
         // Attach a submit handler to the form
@@ -120,7 +127,10 @@
             event.preventDefault();
 
             // Send the data using post
-            var posting = $.post("add-cart.php", {hidden_id: foodID});
+            if (btnString == 'cart')
+                var posting = $.post("add-cart.php", {hidden_id: foodID});
+            else
+                var posting = $.post("add-wishlist.php", {hidden_id: foodID});
 
             // Put the results in a div
             posting.done(function (data) {
