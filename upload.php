@@ -29,8 +29,7 @@ if (isset($_FILES["file"]["type"])) {
                 $foodPrice = $_POST['foodPrice'];
 
                 try {
-                    $stmt = $connect->prepare("INSERT INTO foods (name, image, price) VALUES ('$foodName
-', '$targetPath', $foodPrice)");
+                    $stmt = $connect->prepare("INSERT INTO foods (name, image, price) VALUES ('$foodName', '$targetPath', $foodPrice)");
 
 
                     if ($stmt->execute()) {
