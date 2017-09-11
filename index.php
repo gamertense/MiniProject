@@ -33,6 +33,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <button class="btn btn-default btn-lg btn-link">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+            </li>
+            <li>
                 <button id="cartBtn" class="btn btn-default btn-lg btn-link">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </button>
@@ -52,7 +57,9 @@
                     $result = mysqli_query($connect, $query);
                     $row = mysqli_fetch_array($result);
                     $items_count = $row['COUNT(cart_id)'];
-                    echo $items_count ?></span></li>
+                    echo $items_count ?>
+                </span>
+            </li>
         </ul>
     </div>
 </nav>
@@ -82,10 +89,7 @@
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
                 ?>
-                <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
-
                 <div class="col-md-6">
-
                     <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding:10px;"
                          align="center">
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
@@ -113,6 +117,12 @@
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
+        initialLoad();
+
+
+    });
+
+    function initialLoad() {
         $('button[name="addButton"]').click(function () {
             foodID = $(this).val();
         });
@@ -179,5 +189,5 @@
         $('#cartBtn').click(function () {
             window.location.replace("cart.php");
         });
-    });
+    }
 </script>
