@@ -137,7 +137,7 @@
             event.preventDefault();
 
             // Send the data using post
-            if (btnString == 'cart')
+            if (btnString === 'cart')
                 var posting = $.post("add-cart.php", {hidden_id: foodID});
             else
                 var posting = $.post("add-wishlist.php", {hidden_id: foodID});
