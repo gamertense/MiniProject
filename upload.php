@@ -34,7 +34,7 @@ if (isset($_FILES["file"]["type"])) {
 
 
                     if ($stmt->execute()) {
-                        echo "Product has been added successfully!";
+                        echo "Food has been added successfully!";
                     } else {
                         echo "Query Problem";
                     }
