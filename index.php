@@ -37,7 +37,16 @@
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </button>
                 <span class="badge badge-notify"><?php
+                    //Append search suggestion.
                     include_once 'dbconfig.php';
+                    $query = "SELECT * FROM foods ORDER BY food_id";
+                    $result = mysqli_query($connect, $query);
+                    if (mysqli_num_rows($result) > 0):
+                        while ($row = mysqli_fetch_array($result)): ?>
+                            <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
+                            <?php
+                        endwhile;
+                    endif;
 
                     $query = "select COUNT(cart_id) from cart";
                     $result = mysqli_query($connect, $query);
@@ -81,7 +90,7 @@
                          align="center">
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
                         <h5 class="text-info"><?php echo $row["name"]; ?></h5>
-                        <h5 class="text-danger">฿ <?php echo $row["price"]; ?></h5>
+                        <h5 class="text-danger">฿<?php echo $row["price"]; ?></h5>
                         <button name="addButton" style="margin-top:5px;" class="btn btn-success"
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
                         </button>
