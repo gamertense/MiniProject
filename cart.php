@@ -20,36 +20,9 @@ function getQuantity($connect, $food_id)
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Thai Food Delivery</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="admin.html">Admin</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <button id="wishBtn" class="btn btn-default btn-lg btn-link">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </button>
-            </li>
-            <li>
-                <button id="cartBtn" class="btn btn-default btn-lg btn-link">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                </button>
-                <span class="badge badge-notify"><?php
-                    $query = "select COUNT(cart_id) from cart";
-                    $result = mysqli_query($connect, $query);
-                    $row = mysqli_fetch_array($result);
-                    $items_count = $row['COUNT(cart_id)'];
-                    echo $items_count ?>
-                </span>
-            </li>
-        </ul>
-    </div>
-</nav>
+<?php
+require_once('menu.php');
+?>
 
 <form id="cartForm" method="post">
     <div class="container" style="width:60%;">
@@ -146,6 +119,8 @@ function getQuantity($connect, $food_id)
     var foodID;
 
     $(document).ready(function () {
+        $('#menu1').addClass('active');
+
         $('button[name="removeButton"]').click(function () {
             foodID = $(this).val();
         });
