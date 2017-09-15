@@ -130,12 +130,15 @@ require_once('menu.php');
             event.preventDefault();
 
             // Send the data using post
-            var posting = $.post("remove-cart.php", {food_id: foodID, action: action});
+            var posting = $.post("cart-action.php", {food_id: foodID, action: action});
 
             // Put the results in a div
             posting.done(function (data) {
                 alert(data);
-                window.location.reload();
+                if (action === "checkout")
+                    window.location.replace("payment.php");
+                else
+                    window.location.reload();
             });
         });
 
