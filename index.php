@@ -24,15 +24,6 @@ require_once('menu.php');
 ?>
 
 <div class="container" style="width:60%;">
-    <div class="input-group">
-        <input class="form-control" placeholder="Search" id="foodSearch" data-provide="typeahead"
-               autocomplete="off"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary" id="searchButton">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </div>
-    </div>
     <h2 align="center">Select food</h2>
     <?php
     if (!isset($_GET['input-product']))
@@ -76,9 +67,8 @@ require_once('menu.php');
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
+        $('#menu1').addClass('active');
         initialLoad();
-
-
     });
 
     function initialLoad() {
@@ -131,7 +121,8 @@ require_once('menu.php');
 
         // After user clicks the suggested one and hit 'enter' or 'search button'.
         var inputVal = foodSearchSelector.val();
-        $("#searchButton").click(function () {
+        $("#searchButton").click(function (e) {
+            e.preventDefault();
             inputVal = foodSearchSelector.val();
             window.location.href = "index.php?input-product=" + inputVal;
         });

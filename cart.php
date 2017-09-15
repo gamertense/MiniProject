@@ -99,9 +99,7 @@ require_once('menu.php');
                             <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-success btn-block">
-                                Checkout
-                            </button>
+                            <button name="checkoutButton" class="btn btn-success btn-block">Checkout</button>
                         </div>
                     </div>
                 </div>
@@ -116,13 +114,15 @@ require_once('menu.php');
 </html>
 
 <script>
-    var foodID;
+    var foodID, action = "remove";
 
     $(document).ready(function () {
-        $('#menu1').addClass('active');
-
         $('button[name="removeButton"]').click(function () {
             foodID = $(this).val();
+        });
+
+        $('button[name="checkoutButton"]').click(function () {
+            action = "checkout";
         });
 
         $("#cartForm").submit(function (event) {
@@ -130,7 +130,7 @@ require_once('menu.php');
             event.preventDefault();
 
             // Send the data using post
-            var posting = $.post("remove-cart.php", {food_id: foodID});
+            var posting = $.post("remove-cart.php", {food_id: foodID, action: action});
 
             // Put the results in a div
             posting.done(function (data) {

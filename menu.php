@@ -9,8 +9,20 @@
         </div>
         <ul class="nav navbar-nav">
             <li id="menu1"><a href="index.php">Home</a></li>
-            <li><a href="admin.html">Admin</a></li>
+            <!--            <li><a href="admin.html">Admin</a></li>-->
         </ul>
+        <div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Search" id="foodSearch" data-provide="typeahead"
+                           autocomplete="off">
+                    <div class="input-group-btn">
+                        <button id="searchButton" class="btn btn-default" ><i
+                                    class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <button id="wishBtn" class="btn btn-default btn-lg btn-link">
