@@ -17,7 +17,7 @@
                     <input class="form-control" placeholder="Search" id="foodSearch" data-provide="typeahead"
                            autocomplete="off">
                     <div class="input-group-btn">
-                        <button id="searchButton" class="btn btn-default" ><i
+                        <button id="searchButton" class="btn btn-default"><i
                                     class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
@@ -55,3 +55,43 @@
         </ul>
     </div>
 </nav>
+
+<script>
+    // Insert all products into JSON file for appending in search suggestion.
+    $.ajax
+    ({
+        type: "GET",
+        dataType: 'json',
+        async: true,
+        url: 'create-json.php',
+        data: {data: JSON.stringify(products_JSON)},
+        success: function () {
+            console.log("Success!");
+        },
+        failure: function () {
+            alert("Error!");
+        }
+    });
+
+    // Append search suggestion from the created JSON file above.
+    var foodSearchSelector = $("#foodSearch");
+    $.get("results.json", function (data) {
+        foodSearchSelector.typeahead({source: data});
+    }, 'json');
+
+    // After user clicks the suggested one and hit 'enter' or 'search button'.
+    var inputVal = foodSearchSelector.val();
+    $("#searchButton").click(function (e) {
+        e.preventDefault();
+        inputVal = foodSearchSelector.val();
+        window.location.href = "index.php?input-product=" + inputVal;
+    });
+
+    // When user types in the search box and hits the enter key.
+    foodSearchSelector.keypress(function (event) {
+        if (event.which == 13) {
+            inputVal = foodSearchSelector.val();
+            window.location.href = "index.php?input-product=" + inputVal;
+        }
+    });
+</script>
