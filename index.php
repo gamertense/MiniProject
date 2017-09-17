@@ -20,6 +20,10 @@
 </head>
 <body>
 <?php
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    echo $_POST['email'] . " " . $_POST['password'];
+    $_SESSION["login_status"] = "logged in";
+}
 require_once('menu.php');
 ?>
 

@@ -24,34 +24,50 @@
             </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <button id="wishBtn" class="btn btn-default btn-lg btn-link">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </button>
-            </li>
-            <li>
-                <button id="cartBtn" class="btn btn-default btn-lg btn-link">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                </button>
-                <span class="badge badge-notify"><?php
-                    //Append search suggestion.
-                    include_once 'dbconfig.php';
-                    $query = "SELECT * FROM foods ORDER BY food_id";
-                    $result = mysqli_query($connect, $query);
-                    if (mysqli_num_rows($result) > 0):
-                        while ($row = mysqli_fetch_array($result)): ?>
-                            <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
-                            <?php
-                        endwhile;
-                    endif;
+            <?php include_once 'dbconfig.php';
+            session_start();
+            if (!isset($_SESSION["login_status"])): ?>
+                <form action="index.php" class="navbar-form navbar-right" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="email" class="form-control" name="email" placeholder="Email Address">
+                    </div>
 
-                    $query = "select COUNT(cart_id) from cart";
-                    $result = mysqli_query($connect, $query);
-                    $row = mysqli_fetch_array($result);
-                    $items_count = $row['COUNT(cart_id)'];
-                    echo $items_count ?>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    </div>
+
+                    <button class="btn btn-primary">Login</button>
+                </form>
+            <?php else: ?>
+                <li>
+                    <button id="wishBtn" class="btn btn-default btn-lg btn-link">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </button>
+                </li>
+                <li>
+                    <button id="cartBtn" class="btn btn-default btn-lg btn-link">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                    </button>
+                    <span class="badge badge-notify"><?php
+                        $query = "SELECT * FROM foods ORDER BY food_id";
+                        $result = mysqli_query($connect, $query);
+                        if (mysqli_num_rows($result) > 0):
+                            while ($row = mysqli_fetch_array($result)): ?>
+                                <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
+                                <?php
+                            endwhile;
+                        endif;
+
+                        $query = "select COUNT(cart_id) from cart";
+                        $result = mysqli_query($connect, $query);
+                        $row = mysqli_fetch_array($result);
+                        $items_count = $row['COUNT(cart_id)'];
+                        echo $items_count ?>
                 </span>
-            </li>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>
