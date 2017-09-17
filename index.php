@@ -21,6 +21,8 @@
 <body>
 <?php
 require_once('menu.php');
+
+
 ?>
 
 <div class="container" style="width:60%;">
@@ -71,6 +73,29 @@ require_once('menu.php');
     });
 
     function initialLoad() {
+        $('button[name="addButton"]').click(function () {
+            foodID = $(this).val();
+        });
+        $('button[name="wishButton"]').click(function () {
+            foodID = $(this).val();
+            btnString = 'wish';
+        });
+        // Attach a submit handler to the form
+        $("#foodsForm").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+            // Send the data using post
+            if (btnString === 'cart')
+                var posting = $.post("php-action/add-cart.php", {hidden_id: foodID});
+            else
+                var posting = $.post("php-action/add-wishlist.php", {hidden_id: foodID});
+            // Put the results in a div
+            posting.done(function (data) {
+                alert(data);
+                location.reload();
+            });
+        });
+
         $('#menu1').addClass('active');
 
         $('#cartBtn').click(function () {

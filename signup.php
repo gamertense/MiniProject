@@ -37,15 +37,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <form action="index.php" method="post" class="agile_form">
                 <div class="w3ls-name1">
                     <label class="header">name</label>
-                    <input placeholder="loremipsum " name="first name" type="text" required="">
+                    <input placeholder="loremipsum " name="name" type="text" required="">
                 </div>
                 <div class="w3ls-name1">
                     <label class="header">email</label>
-                    <input placeholder="email@example.com" name="Email" type="email" required="">
+                    <input placeholder="email@example.com" name="email" type="email" required="">
                 </div>
                 <div class="w3ls-name1">
                     <label class="header">password</label>
-                    <input placeholder="*****" name="first name" type="password" required="">
+                    <input placeholder="*****" name="password" type="password" required="">
                 </div>
                 <input type="submit" value="Signup">
             </form>

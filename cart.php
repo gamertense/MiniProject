@@ -132,7 +132,7 @@ require_once('menu.php');
             event.preventDefault();
 
             // Send the data using post
-            var posting = $.post("cart-action.php", {food_id: foodID, action: action});
+            var posting = $.post("php-action/cart-action.php", {food_id: foodID, action: action});
 
             // Put the results in a div
             posting.done(function (data) {

@@ -1,5 +1,5 @@
 <?php
-include_once 'dbconfig.php';
+include_once '../dbconfig.php';
 
 $id = $_POST['hidden_id'];
 $query = "SELECT * FROM wishlist WHERE food_id= $id";
