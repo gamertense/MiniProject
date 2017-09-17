@@ -3,19 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Thai Food Delivery</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <style>
-        /* CSS used here will be applied after bootstrap.css */
-        .badge-notify {
-            background: red;
-            position: relative;
-            top: -10px;
-            left: -25px;
-        }
-    </style>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap3-typeahead.min.js"></script>
 </head>
 <body>
 <?php
@@ -83,14 +70,6 @@ require_once('menu.php');
                 alert(data);
                 location.reload();
             });
-        });
-
-        $('#cartBtn').click(function () {
-            window.location.replace("cart.php");
-        });
-
-        $('#wishBtn').click(function () {
-            window.location.replace("wishlist.php");
         });
     }
 </script>

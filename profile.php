@@ -3,7 +3,6 @@
 <head>
     <title>User profile</title>
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <?php require_once('menu.php'); ?>
 </head>
 <body>
@@ -13,7 +12,7 @@
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-                <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="images/programmer.png" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Upload a different photo...</h6>
                 <input type="file" class="text-center center-block well well-sm">
             </div>
@@ -30,25 +29,19 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="Jane" type="text">
+                        <input class="form-control" value="Antonio">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Last name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="Bishop" type="text">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Company:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" value="" type="text">
+                        <input class="form-control" value="Jack">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="janesemail@gmail.com" type="text">
+                        <input class="form-control" value="<?= $_SESSION['email'] ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,7 +69,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Username:</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="janeuser" type="text">
+                        <input class="form-control" value="JackProgrammer" type="text">
                     </div>
                 </div>
                 <div class="form-group">

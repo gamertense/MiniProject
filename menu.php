@@ -1,3 +1,9 @@
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap3-typeahead.min.js"></script>
 <script>
     var products_JSON = [];
 </script>
@@ -43,19 +49,55 @@
             }
 
             if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
-                <form class="navbar-form navbar-right" method="post">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="email" class="form-control" name="email" placeholder="Email Address">
-                    </div>
+                <li><a href="signup.php">Register</a></li>
+                <li class="dropdown">
+                    <a href="http://phpoll.com/login" class="dropdown-toggle" data-toggle="dropdown">Log In <span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                        <div class="col-lg-12">
+                            <div class="text-center"><h3><b>Log In</b></h3></div>
+                            <form action="index.php" method="post">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input name="email" type="email" tabindex="1" class="form-control"
+                                           placeholder="Email" value="" autocomplete="off" required>
+                                </div>
 
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" tabindex="2"
+                                           class="form-control" placeholder="Password" autocomplete="off" required>
+                                </div>
 
-                    <button class="btn btn-primary">Login</button>
-                </form>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                            <label for="remember"> Remember Me</label>
+                                        </div>
+                                        <div class="col-xs-5 pull-right">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                                                   class="form-control btn btn-success" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <a href="http://phpoll.com/recover" tabindex="5"
+                                                   class="forgot-password">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="hide" name="token" id="token"
+                                       value="a465a2791ae0bae853cf4bf485dbe1b6">
+                            </form>
+                        </div>
+                    </ul>
+                </li>
             <?php else: ?>
                 <li>
                     <button id="wishBtn" class="btn btn-default btn-lg btn-link">
@@ -106,8 +148,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <p>
-                                            <a href="#" class="btn btn-primary btn-block">My Profile</a>
-                                            <a href="#" class="btn btn-danger btn-block">Change Password</a>
+                                            <a href="profile.php" class="btn btn-primary btn-block">My Profile</a>
+                                            <a href="profile.php" class="btn btn-danger btn-block">Change Password</a>
                                         </p>
                                     </div>
                                 </div>
@@ -121,6 +163,14 @@
 </nav>
 
 <script>
+    $('#cartBtn').click(function () {
+        window.location.replace("cart.php");
+    });
+
+    $('#wishBtn').click(function () {
+        window.location.replace("wishlist.php");
+    });
+
     $("button[name=logoutButton]").click(function () {
         $.post("php-action/logout.php", function (data) {
             alert(data);
@@ -168,6 +218,31 @@
 </script>
 
 <style>
+    .badge-notify {
+        background: red;
+        position: relative;
+        top: -10px;
+        left: -25px;
+    }
+
+    /* CSS for dropdown login menu */
+    /* General sizing */
+    ul.dropdown-lr {
+        width: 300px;
+    }
+
+    /* mobile fix */
+    @media (max-width: 768px) {
+        .dropdown-lr h3 {
+            color: #eee;
+        }
+
+        .dropdown-lr label {
+            color: #eee;
+        }
+    }
+
+    /* CSS for dropdown account menu (after login) */
     .navbar-login {
         width: 305px;
         padding: 10px;
