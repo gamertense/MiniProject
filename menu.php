@@ -93,10 +93,8 @@
                                         <p class="text-left"><strong>Mahesh</strong></p>
                                         <p class="text-left small"><?= $_SESSION['email'] ?></p>
                                         <p class="text-left">
-                                        <form method="POST">
-                                            <button class="btn btn-primary btn-block btn-sm">Logout
+                                            <button name="logoutButton" class="btn btn-primary btn-block btn-sm">Logout
                                             </button>
-                                        </form>
                                         </p>
                                     </div>
                                 </div>
@@ -123,13 +121,20 @@
 </nav>
 
 <script>
+    $("button[name=logoutButton]").click(function () {
+        $.post("php-action/logout.php", function (data) {
+            alert(data);
+            window.location.href = "index.php";
+        });
+    });
+
     // Insert all products into JSON file for appending in search suggestion.
     $.ajax
     ({
         type: "GET",
         dataType: 'json',
         async: true,
-        url: 'create-json.php',
+        url: 'php-action/create-json.php',
         data: {data: JSON.stringify(products_JSON)},
         success: function () {
             console.log("Success!");
@@ -141,7 +146,7 @@
 
     // Append search suggestion from the created JSON file above.
     var foodSearchSelector = $("#foodSearch");
-    $.get("results.json", function (data) {
+    $.get("php-action/results.json", function (data) {
         foodSearchSelector.typeahead({source: data});
     }, 'json');
 
