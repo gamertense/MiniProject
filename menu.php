@@ -24,10 +24,26 @@
             </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <?php include_once 'dbconfig.php';
+            <?php
             session_start();
-            if (!isset($_SESSION["login_status"])): ?>
-                <form action="index.php" class="navbar-form navbar-right" method="post">
+            include_once 'dbconfig.php';
+
+            $query = "SELECT * FROM foods ORDER BY food_id";
+            $result = mysqli_query($connect, $query);
+            if (mysqli_num_rows($result) > 0):
+                while ($row = mysqli_fetch_array($result)): ?>
+                    <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
+                    <?php
+                endwhile;
+            endif;
+
+            if (isset($_POST['email']) && isset($_POST['password'])) {
+                $_SESSION["email"] = $_POST['email'];
+                $_SESSION["password"] = $_POST['password'];
+            }
+
+            if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
+                <form class="navbar-form navbar-right" method="post">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="email" class="form-control" name="email" placeholder="Email Address">
@@ -51,21 +67,55 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </button>
                     <span class="badge badge-notify"><?php
-                        $query = "SELECT * FROM foods ORDER BY food_id";
-                        $result = mysqli_query($connect, $query);
-                        if (mysqli_num_rows($result) > 0):
-                            while ($row = mysqli_fetch_array($result)): ?>
-                                <script>products_JSON.push("<?php echo $row["name"]; ?>");</script>
-                                <?php
-                            endwhile;
-                        endif;
-
                         $query = "select COUNT(cart_id) from cart";
                         $result = mysqli_query($connect, $query);
                         $row = mysqli_fetch_array($result);
                         $items_count = $row['COUNT(cart_id)'];
                         echo $items_count ?>
                 </span>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>Mahesh</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Mahesh</strong></p>
+                                        <p class="text-left small"><?= $_SESSION['email'] ?></p>
+                                        <p class="text-left">
+                                        <form method="POST">
+                                            <button class="btn btn-primary btn-block btn-sm">Logout
+                                            </button>
+                                        </form>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="#" class="btn btn-primary btn-block">My Profile</a>
+                                            <a href="#" class="btn btn-danger btn-block">Change Password</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             <?php endif; ?>
         </ul>
@@ -111,3 +161,21 @@
         }
     });
 </script>
+
+<style>
+    .navbar-login {
+        width: 305px;
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+
+    .navbar-login-session {
+        padding: 10px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+
+    .icon-size {
+        font-size: 87px;
+    }
+</style>
