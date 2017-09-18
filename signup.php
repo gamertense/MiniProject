@@ -37,7 +37,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <form action="index.php" method="post" class="agile_form">
                 <div class="w3ls-name1">
                     <label class="header">name</label>
-                    <input placeholder="loremipsum " name="name" type="text" required="">
+                    <input placeholder="Enter your name" name="name" type="text" required="">
                 </div>
                 <div class="w3ls-name1">
                     <label class="header">email</label>

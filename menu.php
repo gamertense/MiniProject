@@ -48,6 +48,9 @@
                 $_SESSION["password"] = $_POST['password'];
             }
 
+            if (isset($_POST['name']))
+                $_SESSION["name"] = $_POST['name'];
+
             if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
                 <li><a href="signup.php">Register</a></li>
                 <li class="dropdown">
@@ -173,7 +176,6 @@
 
     $("button[name=logoutButton]").click(function () {
         $.post("php-action/logout.php", function (data) {
-            alert(data);
             window.location.href = "index.php";
         });
     });
