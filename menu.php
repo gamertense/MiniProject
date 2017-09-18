@@ -54,7 +54,7 @@
             if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
                 <li><a href="signup.php">Register</a></li>
                 <li class="dropdown">
-                    <a href="http://phpoll.com/login" class="dropdown-toggle" data-toggle="dropdown">Log In <span
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Log In <span
                                 class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                         <div class="col-lg-12">
@@ -95,8 +95,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" class="hide" name="token" id="token"
-                                       value="a465a2791ae0bae853cf4bf485dbe1b6">
                             </form>
                         </div>
                     </ul>
