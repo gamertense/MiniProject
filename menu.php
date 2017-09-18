@@ -120,7 +120,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
-                        <strong>Jack</strong>
+                        <strong><?php
+                            if (isset($_SESSION['name']))
+                                echo $_SESSION['name'];
+                            else
+                                echo "Jack";
+                            ?></strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -133,7 +138,12 @@
                                         </p>
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong>Jack</strong></p>
+                                        <p class="text-left"><strong><?php
+                                                if (isset($_SESSION['name']))
+                                                    echo $_SESSION['name'];
+                                                else
+                                                    echo "Jack";
+                                                ?></strong></p>
                                         <p class="text-left small"><?= $_SESSION['email'] ?></p>
                                         <p class="text-left">
                                             <button name="logoutButton" class="btn btn-primary btn-block btn-sm">Logout
