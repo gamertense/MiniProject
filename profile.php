@@ -29,7 +29,12 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="<?= $_SESSION['name'] ?>">
+                        <input class="form-control" value="<?php
+                        if (isset($_SESSION['name']))
+                            echo $_SESSION['name'];
+                        else
+                            echo "Jack";
+                        ?>">
                     </div>
                 </div>
                 <div class="form-group">
