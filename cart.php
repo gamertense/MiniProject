@@ -1,15 +1,3 @@
-<?php
-include_once 'dbconfig.php';
-function getQuantity($connect, $food_id)
-{
-    $query = "select COUNT(food_id) from cart WHERE food_id = $food_id";
-    $result = mysqli_query($connect, $query);
-    $row = mysqli_fetch_array($result);
-    return $row['COUNT(food_id)'];
-}
-
-?>
-
 <!doctype html>
 <html>
 <head>
@@ -21,73 +9,67 @@ function getQuantity($connect, $food_id)
 require_once('menu.php');
 ?>
 
-<form id="cartForm" method="post">
-    <div class="container" style="width:60%;">
-        <div class="col-xs-12">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-                            </div>
-                            <div class="col-xs-6">
-                                <a href="index.php">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block">
-                                        <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-                                    </button>
-                                </a>
-                            </div>
+<div class="container" style="width:60%;">
+    <div class="col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="index.php">
+                                <button type="button" class="btn btn-primary btn-sm btn-block">
+                                    <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <?php
-                $query2 = "SELECT * FROM cart ORDER BY cart_id";
-                $result2 = mysqli_query($connect, $query2);
-                $cart_string = "";
-                $total = 0;
-                if (mysqli_num_rows($result2) > 0):
-                while ($row2 = mysqli_fetch_array($result2)):
-                    $food_id = $row2['food_id'];
-                    $cart_string = $cart_string . $food_id;
-                    if (substr_count($cart_string, $food_id) == 1): //Condition to handle showing duplicated food.
-                        $query = "SELECT * FROM foods WHERE food_id = $food_id";
-                        $result = mysqli_query($connect, $query);
-                        $row = mysqli_fetch_array($result);
-                        ?>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
-                                </div>
-                                <div class="col-xs-4">
-                                    <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
-                                    <h4>
-                                        <small>Food description</small>
-                                    </h4>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="col-xs-6 text-right">
-                                        <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
-                                        </h5>
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        <input id="inputQuantity" type="number" class="form-control input-md"
-                                               value="<?= getQuantity($connect, $food_id); ?>" min="1">
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <button name="removeButton" value="<?= $row['food_id'] ?>"
-                                                class="btn btn-danger">
-                                            <span class="glyphicon glyphicon-trash"> </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
+            </div>
+            <?php
+            $query = "SELECT foods.food_id, name, price, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id
+";
+            $result = mysqli_query($connect, $query);
+            $total = 0;
+            if (mysqli_num_rows($result) > 0):
+            while ($row = mysqli_fetch_array($result)):
+            $food_id = $row['food_id'];
+            ?>
+            <form id="cartForm" method="post">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
                         </div>
-                        <?php
-                        $total += $row['price'] * getQuantity($connect, $food_id);
-                    endif;
+                        <div class="col-xs-4">
+                            <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
+                            <h4>
+                                <small>Food description</small>
+                            </h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-6 text-right">
+                                <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
+                                </h5>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <input id="inputQuantity" name="qty" class="form-control input-md"
+                                       value="<?= $row["quantity"]; ?>" min="1" type="number">
+                            </div>
+                            <div class="col-xs-2">
+                                <button name="removeButton" value="<?= $row['food_id'] ?>"
+                                        class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"> </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <?php
+                $total += $row['price'] * $row["quantity"];
                 endwhile;
                 ?>
                 <div class="panel-footer">
@@ -100,20 +82,26 @@ require_once('menu.php');
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-        <?php
-        endif;
-        ?>
     </div>
-</form>
+    <?php
+    endif;
+    ?>
+</div>
 </body>
 </html>
 
 <script>
-    var foodID, action = "remove";
+    var foodID, action = "remove", qty;
 
     $(document).ready(function () {
+        // When user changes input quantity.
+        $("#inputQuantity").change(function () {
+            action = "updateQty";
+            qty = this.value;
+        });
+
         $('button[name="removeButton"]').click(function () {
             foodID = $(this).val();
         });
@@ -130,25 +118,12 @@ require_once('menu.php');
             var posting = $.post("php-action/cart-action.php", {food_id: foodID, action: action});
 
             // Put the results in a div
-            posting.done(function (data) {
-                alert(data);
+            posting.done(function () {
                 if (action === "checkout")
                     window.location.replace("payment.php");
                 else
                     window.location.reload();
             });
-        });
-
-        $("#inputQuantity").change(function () {
-            var direction = this.defaultValue < this.value;
-            this.defaultValue = this.value;
-            if (direction) {
-//                alert("increase!");
-            }
-            else {
-//                alert("decrease!");
-            }
-            $('#totalPrice').html("<a href='cart.php'>Click here to update total price</a>");
         });
     });
 </script>
