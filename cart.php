@@ -35,7 +35,6 @@ require_once('menu.php');
             $total = 0;
             if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
-            $food_id = $row['food_id'];
             ?>
             <form id="cartForm" method="post">
                 <div class="panel-body">
@@ -55,7 +54,8 @@ require_once('menu.php');
                             </div>
 
                             <div class="col-xs-4">
-                                <input id="inputQuantity" name="qty" class="form-control input-md"
+                                <input name="foodID[]" type="hidden" value="<?= $row['food_id'] ?>">
+                                <input name="quantity[]" class="form-control input-md"
                                        value="<?= $row["quantity"]; ?>" min="1" type="number">
                             </div>
                             <div class="col-xs-2">
@@ -72,12 +72,14 @@ require_once('menu.php');
                 $total += $row['price'] * $row["quantity"];
                 endwhile;
                 ?>
+                <input type="hidden" name="action" value="checkout">
                 <div class="panel-footer">
                     <div class="row text-center">
                         <div class="col-xs-9">
                             <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
                         </div>
                         <div class="col-xs-3">
+                            <button name="updateTotal" class="btn btn-info btn-block">Update total price</button>
                             <button name="checkoutButton" class="btn btn-success btn-block">Checkout</button>
                         </div>
                     </div>
@@ -93,36 +95,48 @@ require_once('menu.php');
 </html>
 
 <script>
-    var foodID, action = "remove", qty;
+    var actionSelector = $("input[name='action']");
+    var foodID;
 
     $(document).ready(function () {
         // When user changes input quantity.
-        $("#inputQuantity").change(function () {
-            action = "updateQty";
-            qty = this.value;
+        $("input[name^='quantity']").change(function () {
+            actionSelector.val("updateQty");
         });
 
         $('button[name="removeButton"]').click(function () {
+            actionSelector.val("remove");
             foodID = $(this).val();
         });
 
         $('button[name="checkoutButton"]').click(function () {
-            action = "checkout";
+            actionSelector.val("checkout");
         });
 
         $("#cartForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
 
-            // Send the data using post
-            var posting = $.post("php-action/cart-action.php", {food_id: foodID, action: action});
+            $('<input />').attr('type', 'hidden')
+                .attr('name', "food_id")
+                .attr('value', foodID)
+                .appendTo('#cartForm');
 
-            // Put the results in a div
-            posting.done(function () {
-                if (action === "checkout")
+            var form_data = new FormData(document.getElementById("cartForm"));
+
+            $.ajax({
+                url: "php-action/cart-action.php",
+                type: "POST",
+                data: form_data,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false   // tell jQuery not to set contentType
+            }).done(function (data) {
+                if (actionSelector.val() === "checkout")
                     window.location.replace("payment.php");
-                else
+                else {
+                    alert(data);
                     window.location.reload();
+                }
             });
         });
     });
