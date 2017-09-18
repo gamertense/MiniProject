@@ -1,30 +1,24 @@
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Thai Food Delivery</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-</head>
+<body>
 <?php
 require_once('menu.php');
 ?>
-<body>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> Payment Details </h3>
-                    <div class="checkbox pull-right">
-                        <label><input type="checkbox"/>Remember</label>
+        <form action="index.php" method="post">
+            <div class="col-xs-12 col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Payment Details </h3>
+                        <div class="checkbox pull-right">
+                            <label><input type="checkbox"/>Remember</label>
+                        </div>
                     </div>
-                </div>
-                <div class="panel-body">
-                    <form>
+                    <div class="panel-body">
                         <div class="form-group">
                             <label for="address">TO ADDRESS:</label>
-                            <textarea class="form-control" rows="3" id="address"></textarea>
+                            <textarea class="form-control" rows="3" id="address" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="cardNumber"> CARD NUMBER</label>
@@ -54,21 +48,22 @@ require_once('menu.php');
                                 </div>
                             </div>
                         </div>
-                    </form>
+
+                    </div>
                 </div>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#"><span class="badge pull-right"><span
+                                        class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                    </li>
+                </ul>
+                <br/>
+                <button class="btn btn-success btn-lg btn-block">Pay</button>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right"><span
-                                    class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
-                </li>
-            </ul>
-            <br/>
-            <button class="btn btn-success btn-lg btn-block">Pay</button>
-        </div>
+        </form>
     </div>
 </div>
 </body>
-
+</html>
 <style>
     .panel-title {
         display: inline;
