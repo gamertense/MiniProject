@@ -27,6 +27,8 @@ if (isset($_FILES["file"]["type"])) {
 
                 $foodName = $_POST['foodName']; //here getting result from the post array after submitting the form.
                 $foodPrice = $_POST['foodPrice'];
+                //Fix file target in database
+                $targetPath = "food-images/" . $_FILES['file']['name']; // Target path where file is to be stored
 
                 try {
                     $stmt = $connect->prepare("INSERT INTO foods (name, image, price) VALUES ('$foodName', '$targetPath', $foodPrice)");
