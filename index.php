@@ -21,21 +21,23 @@ require_once('menu.php');
     }
 
     $result = mysqli_query($connect, $query); ?>
-    <?php
-    if (mysqli_num_rows($result) > 0):
-        while ($row = mysqli_fetch_array($result)):
-            ?>
-            <form method="post" id="foodsForm">
+    <form method="post" id="foodsForm">
+        <?php
+        if (mysqli_num_rows($result) > 0):
+            while ($row = mysqli_fetch_array($result)):
+                ?>
                 <div class="col-sm-4">
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
-                                <button class="btn btn-default" title="Add to cart" data-toggle="tooltip">
+                                <button name="addButton" class="btn btn-default" title="Add to cart"
+                                        data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-shopping-cart"></span>
                                 </button>
                             </div>
                             <div class="options-wishlist-round">
-                                <button class="btn btn-default" title="Add to wishlist" data-toggle="tooltip">
+                                <button name="wishButton" class="btn btn-default" title="Add to wishlist"
+                                        data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-heart"></span>
                                 </button>
                             </div>
@@ -54,11 +56,11 @@ require_once('menu.php');
                         </div>
                     </article>
                 </div>
-            </form>
-            <?php
-        endwhile;
-    endif;
-    ?>
+                <?php
+            endwhile;
+        endif;
+        ?>
+    </form>
 </div>
 </body>
 </html>
