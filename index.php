@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Thai Food Delivery</title>
     <link rel="stylesheet" type="text/css" href="css/index-style.css">
-
 </head>
 <body>
 <?php
@@ -49,7 +48,7 @@ require_once('menu.php');
                                     <!--                                    <p class="details"> Lorem ipsum dolor sit amet, consectetur.. </p>-->
                                     <h1><?php echo $row["name"]; ?></h1>
                                     <br>
-                                    <span class="price-new">฿<?php echo $row["price"]; ?></span>
+                                    <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
                                 </div>
                             </div>
                         </div>

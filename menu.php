@@ -15,7 +15,6 @@
         </div>
         <ul class="nav navbar-nav">
             <li id="menu1"><a href="index.php">Home</a></li>
-            <!--            <li><a href="admin.html">Admin</a></li>-->
         </ul>
         <div class="col-sm-3 col-md-3">
             <form class="navbar-form" role="search">
