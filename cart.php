@@ -71,7 +71,7 @@ require_once('menu.php');
                 $total += $row['price'] * $row["quantity"];
                 endwhile;
                 ?>
-                <input type="hidden" name="action" value="checkout">
+                <input type="hidden" name="action" value="updateQty">
                 <div class="panel-footer">
                     <div class="row text-center">
                         <div class="col-xs-9">
@@ -140,13 +140,3 @@ require_once('menu.php');
         });
     });
 </script>
-
-<style>
-    /* CSS used here will be applied after bootstrap.css */
-    .badge-notify {
-        background: red;
-        position: relative;
-        top: -10px;
-        left: -25px;
-    }
-</style>
