@@ -24,7 +24,7 @@ require_once('menu.php');
                 $row = mysqli_fetch_array($result);
                 ?>
                 <div class="col-md-6">
-                    <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding:10px;"
+                    <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 15px rgba(0,0,0,0.05); padding:10px;"
                          align="center">
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
                         <h5 class="text-info"><?php echo $row["name"]; ?></h5>
