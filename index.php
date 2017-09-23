@@ -26,7 +26,7 @@ require_once('menu.php');
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
                 ?>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="display: none;">
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
@@ -69,11 +69,14 @@ require_once('menu.php');
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
+        $(".col-sm-4").fadeIn("slow");
         initialLoad();
     });
 
     function initialLoad() {
+        $('#menu1').addClass('active');
+        $('[data-toggle="tooltip"]').tooltip();
+
         $('button[name="addButton"]').click(function () {
             foodID = $(this).val();
         });
@@ -97,7 +100,5 @@ require_once('menu.php');
                 location.reload();
             });
         });
-
-        $('#menu1').addClass('active');
     }
 </script>
