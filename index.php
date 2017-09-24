@@ -110,10 +110,10 @@ require_once('menu.php');
                         'Your selected food has been added to wishlist',
                         'success'
                     );
-                } else if (data === "Already added to wishlist") {
+                } else if (data === "already added to wishlist") {
                     swal(
                         'Food exists!',
-                        'This food is already added to wishlist',
+                        'This food is ' + data,
                         'warning'
                     );
                 } else

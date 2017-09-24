@@ -6,7 +6,7 @@ $query = "SELECT * FROM wishlist WHERE food_id= $id";
 $result = mysqli_query($connect, $query);
 
 if (mysqli_num_rows($result) > 0) {
-    echo "Already added to wishlist";
+    echo "already added to wishlist";
 } else {
     $query = "INSERT INTO wishlist (food_id) VALUES ($id)";
 
