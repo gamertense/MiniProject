@@ -73,7 +73,7 @@ require_once('menu.php');
 
             var posting;
             if (btnString === 'cart')
-                posting = $.post("add-cart.php", {hidden_id: foodID});
+                posting = $.post("php-action/add-cart.php", {hidden_id: foodID});
             else
                 posting = $.post("php-action/remove-wishlist.php", {hidden_id: foodID});
 
