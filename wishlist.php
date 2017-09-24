@@ -23,7 +23,7 @@ require_once('menu.php');
                 $result = mysqli_query($connect, $query);
                 $row = mysqli_fetch_array($result);
                 ?>
-                <div class="col-md-6">
+                <div class="col-md-5" style="display: none;">
                     <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 15px rgba(0,0,0,0.05); padding:10px;"
                          align="center">
                         <img src="<?php echo $row["image"]; ?>" class="img-responsive">
@@ -33,7 +33,6 @@ require_once('menu.php');
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
                         </button>
                     </div>
-
                 </div>
                 <?php
             endwhile;
@@ -48,9 +47,8 @@ require_once('menu.php');
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
+        $(".col-md-5").fadeIn("slow");
         initialLoad();
-
-
     });
 
     function initialLoad() {
