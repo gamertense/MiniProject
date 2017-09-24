@@ -45,7 +45,10 @@
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
-                    <div class="col-lg-8"><textarea class="form-control" rows="3"></textarea></div>
+                    <div class="col-lg-8"><textarea class="form-control" rows="4">Calista Wise
+7292 Dictum Av.
+San Antonio MI 47096
+(492) 709-6392</textarea></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Username:</label>
