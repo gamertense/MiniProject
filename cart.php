@@ -78,7 +78,7 @@ require_once('menu.php');
                             <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
                         </div>
                         <div class="col-xs-3">
-                            <button name="updateTotal" class="btn btn-info btn-block">Update total price</button>
+                            <button name="updateTotal" class="btn btn-info btn-block">Update Total Price</button>
                             <button name="checkoutButton" class="btn btn-success btn-block">Checkout</button>
                         </div>
                     </div>
