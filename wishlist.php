@@ -23,14 +23,17 @@ require_once('menu.php');
                 $result = mysqli_query($connect, $query);
                 $row = mysqli_fetch_array($result);
                 ?>
-                <div class="col-md-5" style="display: none;">
+                <div class="col-md-4" style="display: none;">
                     <div style="border: 1px solid #eaeaec; margin: -1px 19px 3px -1px; box-shadow: 0 1px 15px rgba(0,0,0,0.05); padding:10px;"
                          align="center">
-                        <img src="<?php echo $row["image"]; ?>" class="img-responsive">
+                        <img src="<?php echo $row["image"]; ?>" class="img-responsive" style="max-height: 130px;">
                         <h5 class="text-info"><?php echo $row["name"]; ?></h5>
                         <h5 class="text-danger">฿<?php echo $row["price"]; ?></h5>
                         <button name="addButton" style="margin-top:5px;" class="btn btn-success"
                                 value="<?php echo $row["food_id"]; ?>"> Add to Cart
+                        </button>
+                        <button name="removeButton" style="margin-top:5px;" class="btn btn-danger"
+                                value="<?php echo $row["food_id"]; ?>"> Remove
                         </button>
                     </div>
                 </div>
@@ -47,13 +50,19 @@ require_once('menu.php');
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
-        $(".col-md-5").fadeIn("slow");
+        $(".col-md-4").fadeIn("slow");
         initialLoad();
     });
 
     function initialLoad() {
+        $('button[name="removeButton"]').click(function () {
+            foodID = $(this).val();
+            btnString = 'remove';
+        });
+
         $('button[name="addButton"]').click(function () {
             foodID = $(this).val();
+            btnString = 'cart';
         });
 
         // Attach a submit handler to the form
@@ -61,7 +70,11 @@ require_once('menu.php');
             // Stop form from submitting normally
             event.preventDefault();
 
-            var posting = $.post("add-cart.php", {hidden_id: foodID});
+            var posting;
+            if (btnString === 'cart')
+                posting = $.post("add-cart.php", {hidden_id: foodID});
+            else
+                posting = $.post("php-action/remove-wishlist.php", {hidden_id: foodID});
 
             // Put the results in a div
             posting.done(function (data) {
