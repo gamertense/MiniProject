@@ -11,6 +11,7 @@ require_once('menu.php');
 
 <div class="container" style="width:60%;">
     <h2 align="center">My wishlist</h2>
+    <br>
     <?php
     $query2 = "SELECT * FROM wishlist ORDER BY wishlist_id";
     $result2 = mysqli_query($connect, $query2); ?>
