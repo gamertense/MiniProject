@@ -96,8 +96,28 @@ require_once('menu.php');
                 posting = $.post("php-action/add-wishlist.php", {hidden_id: foodID});
             // Put the results in a div
             posting.done(function (data) {
-                alert(data);
-                location.reload();
+                if (data === "success-cart") {
+                    swal(
+                        'Added!',
+                        'Your selected food has been added to cart',
+                        'success'
+                    ).then(function () {
+                        location.reload();
+                    });
+                } else if (data === "success-wishlist") {
+                    swal(
+                        'Added!',
+                        'Your selected food has been added to wishlist',
+                        'success'
+                    );
+                } else if (data === "Already added to wishlist") {
+                    swal(
+                        'Food exists!',
+                        'This food is already added to wishlist',
+                        'warning'
+                    );
+                } else
+                    alert(data)
             });
         });
     }

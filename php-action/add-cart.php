@@ -15,7 +15,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 if ($connect->query($sql) === TRUE) {
-    echo "Successfully added to cart";
+    echo "success-cart";
 } else {
     echo "Error: " . $sql . "<br>" . $connect->error;
 }

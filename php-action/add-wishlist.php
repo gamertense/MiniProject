@@ -11,7 +11,7 @@ if (mysqli_num_rows($result) > 0) {
     $query = "INSERT INTO wishlist (food_id) VALUES ($id)";
 
     if ($connect->query($query) === TRUE) {
-        echo "Successfully added to wishlist";
+        echo "success-wishlist";
     } else
         echo "Error: " . $query . "<br>" . $connect->error;
 }
