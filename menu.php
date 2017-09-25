@@ -45,7 +45,6 @@
             endif;
 
             if (isset($_POST['email']) && isset($_POST['password'])) { ?>
-                <script>var isLogin = true;</script>
                 <?php
                 $_SESSION["email"] = $_POST['email'];
                 $_SESSION["password"] = $_POST['password'];
@@ -104,6 +103,7 @@
                     </ul>
                 </li>
             <?php else: ?>
+                <script>var isLogin = true;</script>
                 <li>
                     <button id="wishBtn" class="btn btn-default btn-lg btn-link">
                         <span class="glyphicon glyphicon-heart"></span>
