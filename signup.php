@@ -63,15 +63,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </html>
 
 <script>
-    $("input[name='name']").on('input', function (e) {
-        var inputName = $("input[name='name']").val();
-        if (!isAlphaOrParen(inputName)) {
-            $("input[name='name']").val("");
-            alert("Please input only alphabets")
-        }
+    $(document).ready(function () {
+        $("input[name='name']").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
     });
-
-    function isAlphaOrParen(str) {
-        return /^[a-zA-Z()]+$/.test(str);
-    }
 </script>
