@@ -44,7 +44,9 @@
                 endwhile;
             endif;
 
-            if (isset($_POST['email']) && isset($_POST['password'])) {
+            if (isset($_POST['email']) && isset($_POST['password'])) { ?>
+                <script>var isLogin = true;</script>
+                <?php
                 $_SESSION["email"] = $_POST['email'];
                 $_SESSION["password"] = $_POST['password'];
             }
@@ -53,11 +55,12 @@
                 $_SESSION["name"] = $_POST['name'];
 
             if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
+                <script>var isLogin = false;</script>
                 <li><a href="signup.php">Register</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Log In <span
                                 class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                    <ul class="dropdown-menu dropdown-lr" role="menu">
                         <div class="col-lg-12">
                             <div class="text-center"><h3><b>Log In</b></h3></div>
                             <form action="index.php" method="post">
@@ -86,7 +89,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
@@ -95,7 +98,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </form>
                         </div>
                     </ul>

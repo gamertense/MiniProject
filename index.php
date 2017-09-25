@@ -88,6 +88,14 @@ require_once('menu.php');
         $("#foodsForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
+            if (!isLogin) {
+                swal(
+                    'Please login first!',
+                    '',
+                    'error'
+                );
+                return;
+            }
             // Send the data using post
             var posting;
             if (btnString === 'cart')
