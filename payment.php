@@ -23,7 +23,8 @@ require_once('menu.php');
                         <div class="form-group">
                             <label for="cardNumber"> CARD NUMBER</label>
                             <div class="input-group">
-                                <input class="form-control" id="cardNumber" placeholder="Valid Card Number"
+                                <input onkeypress="return isNumber(event)" class="form-control" id="cardNumber"
+                                       placeholder="Valid Card Number"
                                        required autofocus/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                             </div>
@@ -33,12 +34,14 @@ require_once('menu.php');
                                 <div class="form-group">
                                     <label for="expityMonth"> EXPIRY DATE</label>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input class="form-control" id="expityMonth" placeholder="MM"
-                                               required/>
+                                        <input onkeypress="return isNumber(event)" class="form-control" id="expityMonth"
+                                               placeholder="MM"
+                                               required maxlength="2"/>
                                     </div>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input class="form-control" id="expityYear" placeholder="YY"
-                                               required/></div>
+                                        <input onkeypress="return isNumber(event)" class="form-control" id="expityYear"
+                                               placeholder="YYYY"
+                                               required maxlength="4"/></div>
                                 </div>
                             </div>
                             <div class="col-xs-5 col-md-5 pull-right">
@@ -53,7 +56,7 @@ require_once('menu.php');
                 </div>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#"><span class="badge pull-right"><span
-                                        class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                                        class="glyphicon glyphicon-usd"></span><?= $_GET['total']; ?></span>Total Price</a>
                     </li>
                 </ul>
                 <br/>
@@ -64,7 +67,21 @@ require_once('menu.php');
 </div>
 </body>
 </html>
+<script>
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>
 <style>
+    a {
+        cursor: default;
+    }
+
     .panel-title {
         display: inline;
         font-weight: bold;
