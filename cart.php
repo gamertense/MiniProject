@@ -32,43 +32,42 @@ require_once('menu.php');
             $query = "SELECT foods.food_id, name, price, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id";
             $result = mysqli_query($connect, $query);
             $total = 0;
-            if (mysqli_num_rows($result) > 0):
-            while ($row = mysqli_fetch_array($result)):
-            ?>
+            if (mysqli_num_rows($result) > 0): ?>
             <form id="cartForm" method="post">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
-                        </div>
-                        <div class="col-xs-4">
-                            <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
-                            <h4>
-                                <small>Food description</small>
-                            </h4>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="col-xs-6 text-right">
-                                <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
-                                </h5>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-2"><img class="img-responsive" src="<?= $row["image"]; ?>">
                             </div>
-
                             <div class="col-xs-4">
-                                <input name="foodID[]" type="hidden" value="<?= $row['food_id'] ?>">
-                                <input name="quantity[]" class="form-control input-md"
-                                       value="<?= $row["quantity"]; ?>" min="1" type="number">
+                                <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
+                                <h4>
+                                    <small>Food description</small>
+                                </h4>
                             </div>
-                            <div class="col-xs-2">
-                                <button name="removeButton" value="<?= $row['food_id'] ?>"
-                                        class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-trash"> </span>
-                                </button>
+                            <div class="col-xs-6">
+                                <div class="col-xs-6 text-right">
+                                    <h5><strong><?= $row["price"]; ?> <span class="text-muted">x</span></strong>
+                                    </h5>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <input name="foodID[]" type="hidden" value="<?= $row['food_id'] ?>">
+                                    <input name="quantity[]" class="form-control input-md"
+                                           value="<?= $row["quantity"]; ?>" min="1" type="number">
+                                </div>
+                                <div class="col-xs-2">
+                                    <button name="removeButton" value="<?= $row['food_id'] ?>"
+                                            class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash"> </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
-                </div>
-                <?php
-                $total += $row['price'] * $row["quantity"];
+                    <?php
+                    $total += $row['price'] * $row["quantity"];
                 endwhile;
                 ?>
                 <input type="hidden" name="action" value="updateQty">
@@ -76,6 +75,7 @@ require_once('menu.php');
                     <div class="row text-center">
                         <div class="col-xs-9">
                             <h4 id="totalPrice" class="text-right">Total <strong>฿ <?= $total ?></strong></h4>
+                            <input type="hidden" name="totalPrice" value="<?= $total; ?>">
                         </div>
                         <div class="col-xs-3">
                             <button name="updateTotal" class="btn btn-info btn-block">Update Total Price</button>
@@ -131,7 +131,7 @@ require_once('menu.php');
                 contentType: false   // tell jQuery not to set contentType
             }).done(function (data) {
                 if (actionSelector.val() === "checkout")
-                    window.location.replace("payment.php");
+                    window.location.replace("payment.php?total=" + <?= $total; ?>);
                 else {
                     alert(data);
                     window.location.reload();
