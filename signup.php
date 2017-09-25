@@ -20,8 +20,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             window.scrollTo(0, 1);
         } </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Custom Theme files -->
-    <link href="css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="css/signup.css" rel='stylesheet' type='text/css'/>
     <!--fonts-->
     <link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
@@ -47,7 +48,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <label class="header">password</label>
                     <input placeholder="*****" name="password" type="password" required="">
                 </div>
-                <input type="submit" value="Signup">
+                <input id="submitBtn" type="submit" value="Signup">
             </form>
         </div>
     </div>
@@ -56,7 +57,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <div class="clearfix"></div>
 </div>
-<p class="footer">© 2017 Online Food World. All Rights Reserved | Design by <a href="http://w3layouts.com/">
+<p class="footer">© 2017 Online Food World. All Rights Reserved | Designed by <a href="http://w3layouts.com/">
         W3layouts</a></p>
 </body>
 </html>
+
+<script>
+    $("input[name='name']").on('input', function (e) {
+        var inputName = $("input[name='name']").val();
+        if (!isAlphaOrParen(inputName)) {
+            $("input[name='name']").val("");
+            alert("Please input only alphabets")
+        }
+    });
+
+    function isAlphaOrParen(str) {
+        return /^[a-zA-Z()]+$/.test(str);
+    }
+</script>
