@@ -78,6 +78,7 @@ require_once('menu.php');
         $('[data-toggle="tooltip"]').tooltip();
 
         $('button[name="addButton"]').click(function () {
+            btnString = 'cart';
             foodID = $(this).val();
         });
         $('button[name="wishButton"]').click(function () {
