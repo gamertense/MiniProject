@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
-                        <input name="email" class="form-control" value="<?= $_SESSION['email'] ?>">
+                        <input name="email" class="form-control" value="<?= $_SESSION['email'] ?>" type="email">
                     </div>
                 </div>
                 <div class="form-group">
@@ -97,3 +97,23 @@ San Antonio MI 47096
 </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $("input[name='name']").keypress(function (e) {
+            const regex = /^[a-z\s]+$/gi;
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            if (regex.test(str)) {
+                return true;
+            } else {
+                e.preventDefault();
+                swal(
+                    'Oops!',
+                    'Please enter only alphabets.',
+                    'error'
+                );
+                return false;
+            }
+        });
+    });
+</script>
