@@ -55,8 +55,7 @@ require_once('menu.php');
                     </div>
                 </div>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><span class="badge pull-right"><span
-                                        class="glyphicon glyphicon-usd"></span><?= $_GET['total']; ?></span>Total Price</a>
+                    <li class="active"><a href="#"><span class="badge pull-right">฿<?= $_GET['total']; ?></span>Total Price</a>
                     </li>
                 </ul>
                 <br/>
