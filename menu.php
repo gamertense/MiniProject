@@ -94,7 +94,10 @@
                         </div>
                     </ul>
                 </li>
-            <?php else: ?>
+            <?php
+            // If a user has logged in.
+            else: ?>
+                <script>var isLogin = true;</script>
                 <li>
                     <button id="wishBtn" class="btn btn-default btn-lg btn-link">
                         <span class="glyphicon glyphicon-heart"></span>
