@@ -45,7 +45,7 @@
                 endwhile;
             endif;
 
-            if (!isset($_SESSION["email"]) || !isset($_SESSION["password"])): ?>
+            if (!isset($_SESSION["user_id"])): ?>
                 <script>var isLogin = false;</script>
                 <li><a href="signup.php">Register</a></li>
                 <li class="dropdown">
@@ -118,12 +118,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
-                        <strong><?php
-                            if (isset($_SESSION['name']))
-                                echo $_SESSION['name'];
-                            else
-                                echo "Jack";
-                            ?></strong>
+                        <strong><?= $_SESSION['name']; ?></strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -136,12 +131,7 @@
                                         </p>
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong><?php
-                                                if (isset($_SESSION['name']))
-                                                    echo $_SESSION['name'];
-                                                else
-                                                    echo "Jack";
-                                                ?></strong></p>
+                                        <p class="text-left"><strong><?= $_SESSION['name']; ?></strong></p>
                                         <p class="text-left small"><?= $_SESSION['email'] ?></p>
                                         <p class="text-left">
                                             <button name="logoutButton" class="btn btn-primary btn-block btn-sm">Logout
