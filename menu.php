@@ -1,12 +1,12 @@
-<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
-<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/css/sweetalert2.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/css/menu.css">
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="vendor/js/jquery-3.2.1.min.js"></script>
+<script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-<script src="js/bootstrap3-typeahead.min.js"></script>
-<script src="js/sweetalert2.min.js"></script>
+<script src="vendor/js/bootstrap3-typeahead.min.js"></script>
+<script src="vendor/js/sweetalert2.min.js"></script>
 <script>
     var products_JSON = [];
 </script>
@@ -17,7 +17,7 @@
             <a class="navbar-brand" href="index.php">Thai Food Delivery</a>
         </div>
         <ul class="nav navbar-nav">
-            <li id="menu1"><a href="index.php">Home</a></li>
+            <li id="menu1"><a href="index.php">Select Food</a></li>
         </ul>
         <div class="col-sm-3 col-md-3">
             <form class="navbar-form" role="search">

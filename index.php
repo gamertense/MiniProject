@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thai Food Delivery</title>
-    <link rel="stylesheet" type="text/css" href="css/index-style.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css/index-style.css">
 </head>
 <body>
 <?php
