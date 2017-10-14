@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>TFD Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -65,6 +65,12 @@
 
 <script>
     $(document).ready(function (e) {
+        $("a").click(function () {
+            $.post("php-action/logout.php", function (data) {
+                window.location.href = "index.php";
+            });
+        });
+
         $("#uploadimage").on('submit', (function (e) {
             e.preventDefault();
             $("#message").empty();

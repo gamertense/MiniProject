@@ -5,7 +5,7 @@
 <script src="vendor/js/jquery-3.2.1.min.js"></script>
 <script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-<script src="vendor/js/bootstrap3-typeahead.min.js"></script>
+<script src="vendor/js/jquery.autocomplete.min.js"></script>
 <script src="vendor/js/sweetalert2.min.js"></script>
 <script>
     var products_JSON = [];
@@ -17,20 +17,21 @@
             <a class="navbar-brand" href="index.php">Thai Food Delivery</a>
         </div>
         <ul class="nav navbar-nav">
-            <li id="menu1"><a href="index.php">Select Food</a></li>
-        </ul>
-        <div class="col-sm-3 col-md-3">
-            <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input class="form-control" placeholder="Search" id="foodSearch" data-provide="typeahead"
-                           autocomplete="off">
-                    <div class="input-group-btn">
-                        <button id="searchButton" class="btn btn-default"><i
-                                    class="glyphicon glyphicon-search"></i></button>
+            <li id="menu1"><a href="food.php">Select Food</a></li>
+            <li>
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Search" id="foodSearch" data-provide="autocomplete"
+                               autocomplete="off">
+                        <div class="input-group-btn">
+                            <button id="searchButton" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-search"></i></button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </li>
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
             <?php
             session_start();
@@ -168,7 +169,7 @@
             if (data !== "login success")
                 swal('Oops!', 'Incorrect email or password', 'error');
             else
-                window.location.reload();
+                window.location.href = "food.php";
         });
     });
 
@@ -182,38 +183,19 @@
 
     $("button[name=logoutButton]").click(function () {
         $.post("php-action/logout.php", function (data) {
-            window.location.href = "index.php";
+            window.location.href = "food.php";
         });
     });
 
-    // Insert all products into JSON file for appending in search suggestion.
-    $.ajax
-    ({
-        type: "GET",
-        dataType: 'json',
-        async: true,
-        url: 'php-action/create-json.php',
-        data: {data: JSON.stringify(products_JSON)},
-        success: function () {
-            console.log("Success!");
-        },
-        failure: function () {
-            alert("Error!");
-        }
-    });
-
-    // Append search suggestion from the created JSON file above.
     var foodSearchSelector = $("#foodSearch");
-    $.get("php-action/results.json", function (data) {
-        foodSearchSelector.typeahead({source: data});
-    }, 'json');
+    $('#foodSearch').autocomplete({lookup: products_JSON});
 
     // After user clicks the suggested one and hit 'enter' or 'search button'.
     var inputVal = foodSearchSelector.val();
     $("#searchButton").click(function (e) {
         e.preventDefault();
         inputVal = foodSearchSelector.val();
-        window.location.href = "index.php?s=" + inputVal;
+        window.location.href = "food.php?s=" + inputVal;
     });
 
     // When user types in the search box and hits the enter key.
