@@ -13,11 +13,11 @@ require_once('menu.php');
 <div class="container" style="width:60%;">
     <h2 align="center">Select food</h2><br>
     <?php
-    if (!isset($_GET['input-product']))
+    if (!isset($_GET['s']))
         $query = "SELECT * FROM foods ORDER BY food_id";
     else {
-        $input_product = $_GET['input-product'];
-        $query = "SELECT * FROM foods WHERE name LIKE '%$input_product%'";
+        $food_name = $_GET['s'];
+        $query = "SELECT * FROM foods WHERE name LIKE '%$food_name%'";
     }
 
     $result = mysqli_query($connect, $query); ?>

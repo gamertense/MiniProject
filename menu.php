@@ -223,14 +223,14 @@
     $("#searchButton").click(function (e) {
         e.preventDefault();
         inputVal = foodSearchSelector.val();
-        window.location.href = "index.php?input-product=" + inputVal;
+        window.location.href = "index.php?s=" + inputVal;
     });
 
     // When user types in the search box and hits the enter key.
     foodSearchSelector.keypress(function (event) {
         if (event.which == 13) {
             inputVal = foodSearchSelector.val();
-            window.location.href = "index.php?input-product=" + inputVal;
+            window.location.href = "index.php?s=" + inputVal;
         }
     });
 </script>
