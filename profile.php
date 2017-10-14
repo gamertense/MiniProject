@@ -3,7 +3,8 @@
 <head>
     <title>User profile</title>
     <?php require_once('menu.php');
-    $query = "SELECT * FROM user where user_id = 1";
+    $user_id = $_SESSION["user_id"];
+    $query = "SELECT * FROM customer where cu_id = $user_id";
     $result = mysqli_query($connect, $query);
     $row = mysqli_fetch_array($result); ?>
 </head>
