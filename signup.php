@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Thai Food Delivery</title>
     <!-- Custom Theme files -->
-    <link rel="stylesheet" type="text/css" href="css/signup.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css/signup.css">
 </head>
 <body>
 <?php
@@ -59,20 +59,25 @@ require_once('menu.php');
 
 <script>
     $(document).ready(function () {
-        $("input[name='name']").keypress(function (e) {
-            const regex = /^[a-z\s]+$/gi;
-            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-            if (regex.test(str)) {
-                return true;
-            } else {
-                e.preventDefault();
-                swal(
-                    'Oops!',
-                    'Please enter only alphabets.',
-                    'error'
-                );
-                return false;
+        /* $("input[name='name']").keypress(function (e) {
+             const regex = /^[a-z\s]+$/gi;
+             var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+             if (regex.test(str)) {
+                 return true;
+             } else {
+                 e.preventDefault();
+                 swal(
+                     'Oops!',
+                     'Please enter only alphabets.',
+                     'error'
+                 );
+                 return false;
+             }
+         });*/
+        $("input[name='name']").bind('keyup blur', function () {
+                var node = $(this);
+                node.val(node.val().replace(/[^A-Za-z\s]/g, ''));
             }
-        });
+        );
     });
 </script>
