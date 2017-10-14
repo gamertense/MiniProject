@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>User profile</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <?php require_once('menu.php');
     $query = "SELECT * FROM user where user_id = 1";
     $result = mysqli_query($connect, $query);
@@ -47,15 +46,10 @@
                                                     rows="4"><?= $row['address'] ?></textarea></div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Username:</label>
-                    <div class="col-md-8">
-                        <input name="username" class="form-control" value="<?= $row['username'] ?>" required>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-md-3 control-label">Password:</label>
                     <div class="col-md-8">
-                        <input name="password" class="form-control" value="<?= $row['password'] ?>" type="password" required>
+                        <input name="password" class="form-control" value="<?= $row['password'] ?>" type="password"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -97,27 +91,19 @@
                         'Updated!',
                         'Your account profile has been updated!',
                         'success'
-                    );
+                    ).then(function () {
+                        location.reload();
+                    });
                 else {
-                    alert(data);
+                    swal(data);
                 }
             });
         });
 
-        $("input[name='name']").keypress(function (e) {
-            const regex = /^[a-z\s]+$/gi;
-            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-            if (regex.test(str)) {
-                return true;
-            } else {
-                e.preventDefault();
-                swal(
-                    'Oops!',
-                    'Please enter only alphabets.',
-                    'error'
-                );
-                return false;
+        $("input[name='name']").bind('keyup blur', function () {
+                var node = $(this);
+                node.val(node.val().replace(/[^A-Za-z\s]/g, ''));
             }
-        });
+        );
     });
 </script>
