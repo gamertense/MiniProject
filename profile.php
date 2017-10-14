@@ -4,13 +4,9 @@
     <title>User profile</title>
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <?php require_once('menu.php');
-    if (isset($_POST['save'])) {
-        $_SESSION['name'] = $_POST['name'];
-        $_SESSION['email'] = $_POST['email'];
-        $_SESSION['address'] = $_POST['address'];
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['name'] = $_POST['name'];
-    } ?>
+    $query = "SELECT * FROM user where user_id = 1";
+    $result = mysqli_query($connect, $query);
+    $row = mysqli_fetch_array($result); ?>
 </head>
 <body>
 <div class="container">
@@ -32,57 +28,40 @@
                 This is an <strong>.alert</strong>. Use this to show important messages to the user.
             </div>-->
             <h3>Personal info</h3>
-            <form method="post" class="form-horizontal">
+            <form id="profileForm" method="post" class="form-horizontal">
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Name:</label>
                     <div class="col-lg-8">
-                        <input name="name" class="form-control" value="<?php
-                        if (isset($_SESSION['name']))
-                            echo $_SESSION['name'];
-                        else
-                            echo "Jack";
-                        ?>">
+                        <input name="name" class="form-control" value="<?= $row['name'] ?>" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
-                        <input name="email" class="form-control" value="<?= $_SESSION['email'] ?>" type="email">
+                        <input name="email" class="form-control" value="<?= $row['email'] ?>" type="email" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
-                    <div class="col-lg-8"><textarea name="address" class="form-control" rows="4"><?php
-                            if (isset($_SESSION['address']))
-                                echo $_SESSION['address'];
-                            else
-                                echo "Calista Wise
-7292 Dictum Av.
-San Antonio MI 47096
-(492) 709-6392";
-                            ?></textarea></div>
+                    <div class="col-lg-8"><textarea name="address" class="form-control"
+                                                    rows="4"><?= $row['address'] ?></textarea></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Username:</label>
                     <div class="col-md-8">
-                        <input name="username" class="form-control" value="<?php
-                        if (isset($_SESSION['username']))
-                            echo $_SESSION['username'];
-                        else
-                            echo $_SESSION['email'];
-                        ?>" type="text">
+                        <input name="username" class="form-control" value="<?= $row['username'] ?>" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password:</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="11111122333" type="password">
+                        <input name="password" class="form-control" value="<?= $row['password'] ?>" type="password" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Confirm password:</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="11111122333" type="password">
+                        <input class="form-control" value="<?= $row['password'] ?>" type="password" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -100,6 +79,31 @@ San Antonio MI 47096
 
 <script>
     $(document).ready(function () {
+        $("#profileForm").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            var form_data = new FormData(document.getElementById("profileForm"));
+
+            $.ajax({
+                url: "php-action/update-profile.php",
+                type: "POST",
+                data: form_data,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false   // tell jQuery not to set contentType
+            }).done(function (data) {
+                if (data == "success")
+                    swal(
+                        'Updated!',
+                        'Your account profile has been updated!',
+                        'success'
+                    );
+                else {
+                    alert(data);
+                }
+            });
+        });
+
         $("input[name='name']").keypress(function (e) {
             const regex = /^[a-z\s]+$/gi;
             var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
