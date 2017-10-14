@@ -46,7 +46,7 @@
                 endwhile;
             endif;
 
-            if (!isset($_SESSION["user_id"])): ?>
+            if (!isset($_SESSION["cu_id"])): ?>
                 <script>var isLogin = false;</script>
                 <li><a href="signup.php">Register</a></li>
                 <li class="dropdown">

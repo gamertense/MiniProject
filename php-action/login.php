@@ -10,7 +10,7 @@ $result = mysqli_query($connect, $query);
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
-    $_SESSION["user_id"] = $row['cu_id'];
+    $_SESSION["cu_id"] = $row['cu_id'];
     $_SESSION["name"] = $row['name'];
     $_SESSION["email"] = $row['email'];
     echo "login success";
