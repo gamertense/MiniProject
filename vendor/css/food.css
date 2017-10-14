@@ -9,7 +9,7 @@
     border: 1px solid #E1E1E1;
     background: #FFF;
     margin-bottom: 12px;
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .col-item .options {
