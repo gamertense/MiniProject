@@ -20,7 +20,7 @@ require_once('menu.php');
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <form action="index.php" method="post">
+                    <form action="food.php" method="post">
                         <div class="form-group">
                             <input name="name" id="first_name" class="form-control input-sm"
                                    placeholder="First Name" required>
@@ -46,7 +46,7 @@ require_once('menu.php');
                             </div>
                         </div>
 
-                        <input type="submit" value="Register" class="btn btn-info btn-block">
+                        <input type="submit" name="Register" class="btn btn-info btn-block">
 
                     </form>
                 </div>
@@ -59,21 +59,6 @@ require_once('menu.php');
 
 <script>
     $(document).ready(function () {
-        /* $("input[name='name']").keypress(function (e) {
-             const regex = /^[a-z\s]+$/gi;
-             var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-             if (regex.test(str)) {
-                 return true;
-             } else {
-                 e.preventDefault();
-                 swal(
-                     'Oops!',
-                     'Please enter only alphabets.',
-                     'error'
-                 );
-                 return false;
-             }
-         });*/
         $("input[name='name']").bind('keyup blur', function () {
                 var node = $(this);
                 node.val(node.val().replace(/[^A-Za-z\s]/g, ''));
