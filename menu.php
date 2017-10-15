@@ -207,7 +207,7 @@
     foodSearchSelector.keypress(function (event) {
         if (event.which == 13) {
             inputVal = foodSearchSelector.val();
-            window.location.href = "index.php?s=" + inputVal;
+            window.location.href = "food.php?s=" + inputVal;
         }
     });
 </script>
