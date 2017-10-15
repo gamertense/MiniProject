@@ -60,7 +60,7 @@ endif;
                                 </button>
                             </div>
                             <div class="options-wishlist-round">
-                                <button name="wishButton" class="btn btn-default" title="Remove"
+                                <button name="removeButton" class="btn btn-default" title="Remove"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-trash"></span>
                                 </button>
@@ -91,9 +91,36 @@ endif;
 
 <script src="../vendor/js/jquery.autocomplete.min.js"></script>
 <script>
-    var foodID, btnString = 'cart';
-
     $(document).ready(function () {
+        $("#foodsForm").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+        });
+
+        $('button[name="removeButton"]').click(function (e) {
+            var food_id = $(this).val();
+
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+            }).then(function () {
+                var posting = $.post("php-action/remove-food.php", {food_id: food_id});
+                posting.done(function (data) {
+                    if (data === "success") {
+                        swal(
+                            'Deleted!',
+                            'Your selected food has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+            })
+        });
         initialLoad();
     });
 

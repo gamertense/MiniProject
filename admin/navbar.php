@@ -11,9 +11,11 @@ if (!isset($_SESSION['admin_name']))
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="../vendor/css/sweetalert2.min.css">
 <!--    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>-->
 <script src="../vendor/js/jquery-3.2.1.min.js"></script>
 <script src="../vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../vendor/js/sweetalert2.min.js"></script>
 <!--    <script src="js/plugins/piexif.min.js"></script>-->
 <!--    <script src="js/plugins/sortable.min.js"></script>-->
 <!--    <script src="js/plugins/purify.min.js"></script>-->
