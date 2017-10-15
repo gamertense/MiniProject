@@ -193,7 +193,7 @@
     });
 
     var foodSearchSelector = $("#foodSearch");
-    $('#foodSearch').autocomplete({lookup: products_JSON});
+    foodSearchSelector.autocomplete({lookup: products_JSON});
 
     // After user clicks the suggested one and hit 'enter' or 'search button'.
     var inputVal = foodSearchSelector.val();

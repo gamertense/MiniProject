@@ -94,10 +94,16 @@ endif;
     var foodID, btnString = 'cart';
 
     $(document).ready(function () {
+        initialLoad();
+    });
+
+    function initialLoad() {
+        $('#menu2').addClass('active');
         $(".col-sm-4").fadeIn("slow");
+        $('[data-toggle="tooltip"]').tooltip();
 
         var foodSearchSelector = $("#foodSearch");
-        $('#foodSearch').autocomplete({lookup: products_JSON});
+        foodSearchSelector.autocomplete({lookup: products_JSON});
 
         // After user clicks the suggested one and hit 'enter' or 'search button'.
         var inputVal = foodSearchSelector.val();
@@ -113,58 +119,6 @@ endif;
                 inputVal = foodSearchSelector.val();
                 window.location.href = "edit-menu.php?s=" + inputVal;
             }
-        });
-        initialLoad();
-    });
-
-    function initialLoad() {
-        $('#menu2').addClass('active');
-        $('[data-toggle="tooltip"]').tooltip();
-
-        $('button[name="addButton"]').click(function () {
-            btnString = 'cart';
-            foodID = $(this).val();
-        });
-        $('button[name="wishButton"]').click(function () {
-            foodID = $(this).val();
-            btnString = 'wish';
-        });
-        // Attach a submit handler to the form
-        $("#foodsForm").submit(function (event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-
-            // Send the data using post
-            var posting;
-            if (btnString === 'cart')
-                posting = $.post("php-action/add-cart.php", {hidden_id: foodID});
-            else
-                posting = $.post("php-action/add-wishlist.php", {hidden_id: foodID});
-            // Put the results in a div
-            posting.done(function (data) {
-                if (data === "success-cart") {
-                    swal(
-                        'Added!',
-                        'Your selected food has been added to cart',
-                        'success'
-                    ).then(function () {
-                        location.reload();
-                    });
-                } else if (data === "success-wishlist") {
-                    swal(
-                        'Added!',
-                        'Your selected food has been added to wishlist',
-                        'success'
-                    );
-                } else if (data === "already added to wishlist") {
-                    swal(
-                        'Food exists!',
-                        'This food is ' + data,
-                        'warning'
-                    );
-                } else
-                    alert(data)
-            });
         });
     }
 </script>
