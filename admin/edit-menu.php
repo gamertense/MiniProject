@@ -116,7 +116,9 @@ endif;
                             'Deleted!',
                             'Your selected food has been deleted.',
                             'success'
-                        )
+                        ).then(function () {
+                            location.reload();
+                        });
                     }
                 });
             })
