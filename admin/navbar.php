@@ -27,7 +27,7 @@ if (!isset($_SESSION['admin_name']))
             <a class="navbar-brand" href="index.php">Thai Food Dashboard</a>
         </div>
         <ul class="nav navbar-nav">
-            <li id="menu1"><a href="index.php">Add menu</a></li>
+            <li id="menu1"><a href="add-menu.php">Add menu</a></li>
             <li id="menu2"><a href="edit-menu.php">Edit menu</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -38,7 +38,7 @@ if (!isset($_SESSION['admin_name']))
 
 <script>
     $(".navbar-right a").click(function () {
-        $.post("../php-action/logout.php", function (data) {
+        $.post("../php-action/logout.php", function () {
             window.location.href = "index.php";
         });
     });
