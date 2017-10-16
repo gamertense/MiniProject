@@ -114,7 +114,8 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </button>
                     <span class="badge badge-notify"><?php
-                        $query = "select COUNT(cart_id) from cart";
+                        $cu_id = $_SESSION["cu_id"];
+                        $query = "select COUNT(cart_id) from cart where cu_id = $cu_id";
                         $result = mysqli_query($connect, $query);
                         $row = mysqli_fetch_array($result);
                         $items_count = $row['COUNT(cart_id)'];
