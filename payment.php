@@ -6,7 +6,15 @@ require_once('menu.php');
 ?>
 <div class="container">
     <div class="row">
-        <form action="index.php" method="post">
+        <?php
+        $cu_id = $_SESSION["cu_id"];
+        $query = "SELECT address FROM customer where cu_id = $cu_id";
+        $result = mysqli_query($connect, $query);
+        if ($connect->query($query) === FALSE)
+            echo "failed!";
+        $row = mysqli_fetch_array($result);
+        ?>
+        <form id="paymentForm" method="post">
             <div class="col-xs-12 col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -18,7 +26,8 @@ require_once('menu.php');
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="address">TO ADDRESS:</label>
-                            <textarea class="form-control" rows="3" id="address" required></textarea>
+                            <textarea class="form-control" rows="3" id="address"
+                                      required><?= $row['address'] ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="cardNumber"> CARD NUMBER</label>
@@ -55,7 +64,8 @@ require_once('menu.php');
                     </div>
                 </div>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><span class="badge pull-right">฿<?= $_GET['total']; ?></span>Total Price</a>
+                    <li class="active"><a href="#"><span class="badge pull-right">฿<?= $_GET['total']; ?></span>Total
+                            Price</a>
                     </li>
                 </ul>
                 <br/>
@@ -67,6 +77,18 @@ require_once('menu.php');
 </body>
 </html>
 <script>
+    $(document).ready(function () {
+        $("#paymentForm").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            var posting = $.post("php-action/payment.php");
+            posting.done(function () {
+                window.location.replace("food.php");
+            });
+        });
+    });
+
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
