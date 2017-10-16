@@ -29,7 +29,8 @@ require_once('menu.php');
                 </div>
             </div>
             <?php
-            $query = "SELECT foods.food_id, name, price, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id";
+            $cu_id = $_SESSION["cu_id"];
+            $query = "SELECT foods.food_id, name, price, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id where cu_id = $cu_id";
             $result = mysqli_query($connect, $query);
             $total = 0;
             if (mysqli_num_rows($result) > 0): ?>
