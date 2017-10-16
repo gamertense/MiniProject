@@ -14,6 +14,7 @@ if (isset($_POST['Register'])) {
     $password = $_POST['password'];
     $name = $_POST['name'];
     $query = "INSERT INTO customer (email, password, name) VALUES('$email', '$password', '$name')";
+    $connect->query($query);
 //    if ($connect->query($query) === TRUE)
 //        echo "success";
 }
