@@ -27,6 +27,7 @@ require_once('../dbconfig.php');
         <table class="table table-hover">
             <thead>
             <tr>
+            	<th>Order date</th>
                 <th>Customer name</th>
                 <th>Food name</th>
                 <th>Quantity</th>
@@ -37,7 +38,7 @@ require_once('../dbconfig.php');
             <tbody>
 
             <?php
-            $query = "SELECT c.name as cu_name, f.name as f_name, quantity, address, isDelivered
+            $query = "SELECT orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
                           FROM orders o join customer c on c.cu_id = o.cu_id
                           join foods f on f.food_id = o.food_id having isDelivered = 0";
             $result = mysqli_query($connect, $query);
@@ -45,6 +46,7 @@ require_once('../dbconfig.php');
                 while ($row = mysqli_fetch_array($result)):
                     ?>
                     <tr>
+                    	<td><?= $row['orderDate'] ?></td>
                         <td><?= $row['cu_name'] ?></td>
                         <td><?= $row['f_name'] ?></td>
                         <td><?= $row['quantity'] ?></td>

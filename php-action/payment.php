@@ -9,7 +9,7 @@ $result = mysqli_query($connect, $query);
 while ($row = mysqli_fetch_array($result)) {
     $food_id = $row['food_id'];
     $qty = $row['quantity'];
-    $query = "INSERT INTO orders(cu_id, food_id, quantity) VALUES($cu_id, $food_id, $qty)";
+    $query = "INSERT INTO orders(cu_id, food_id, orderDate, quantity) VALUES($cu_id, $food_id, now(), $qty)";
 
     if ($connect->query($query) === FALSE)
         echo "failed!";
