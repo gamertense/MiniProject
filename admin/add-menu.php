@@ -42,7 +42,7 @@ require_once('navbar.php');
 
 <script>
     $(document).ready(function () {
-        $('#menu1').addClass('active');
+        $('#menu2').addClass('active');
 
         $("#uploadimage").on('submit', (function (e) {
             e.preventDefault();

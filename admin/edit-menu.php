@@ -127,7 +127,7 @@ endif;
     });
 
     function initialLoad() {
-        $('#menu2').addClass('active');
+        $('#menu3').addClass('active');
         $(".col-sm-4").fadeIn("slow");
         $('[data-toggle="tooltip"]').tooltip();
 
