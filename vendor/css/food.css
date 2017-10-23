@@ -37,14 +37,21 @@
 .col-item .options-cart-round {
     position: absolute;
     right: 55%;
-    top: 20%;
+    top: 7%;
     display: none;
 }
 
 .col-item .options-wishlist-round {
     position: absolute;
     left: 55%;
-    top: 20%;
+    top: 7%;
+    display: none;
+}
+
+.col-item .options-info-round {
+    position: absolute;
+    left: 40%;
+    top: 32%;
     display: none;
 }
 
@@ -60,11 +67,21 @@
 
 }
 
+.col-item .options-info-round button {
+    border-radius: 50%;
+    padding: 14px 16px;
+
+}
+
 .col-item .options-cart-round button .fa {
     font-size: 22px;
 }
 
 .col-item .options-wishlist-round button .fa {
+    font-size: 22px;
+}
+
+.col-item .options-info-round button .fa {
     font-size: 22px;
 }
 
@@ -78,6 +95,15 @@
 }
 
 .col-item .photo:hover .options-wishlist-round {
+    display: block;
+    -webkit-animation: fadeInDown .5s ease;
+    -moz-animation: fadeInDown .5s ease;
+    -ms-animation: fadeInDown .5s ease;
+    -o-animation: fadeInDown .5s ease;
+    animation: fadeInDown .5s ease;
+}
+
+.col-item .photo:hover .options-info-round {
     display: block;
     -webkit-animation: fadeInDown .5s ease;
     -moz-animation: fadeInDown .5s ease;

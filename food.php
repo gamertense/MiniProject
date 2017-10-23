@@ -51,6 +51,12 @@ if (isset($_POST['Register'])) {
                                     <span class="fa fa-heart"></span>
                                 </button>
                             </div>
+                            <div class="options-info-round">
+                                <button name="infoButton" class="btn btn-default" title="More info"
+                                        data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
                             <img src="<?php echo $row["image"]; ?>" class="img-responsive"
                                  alt="Product Image"/>
                         </div>
