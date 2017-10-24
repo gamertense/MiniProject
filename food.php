@@ -101,11 +101,16 @@ if (isset($_POST['Register'])) {
             foodID = $(this).val();
             btnString = 'wish';
         });
+        $('button[name="infoButton"]').click(function () {
+            foodID = $(this).val();
+            btnString = 'info';
+        });
+
         // Attach a submit handler to the form
         $("#foodsForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
-            if (!isLogin) {
+            if (!isLogin && btnString !== 'info') {
                 swal(
                     'Please login first!',
                     '',
@@ -117,6 +122,8 @@ if (isset($_POST['Register'])) {
             var posting;
             if (btnString === 'cart')
                 posting = $.post("php-action/add-cart.php", {hidden_id: foodID});
+            else if (btnString === 'info')
+                window.location = "food-info.php?fid=" + foodID;
             else
                 posting = $.post("php-action/add-wishlist.php", {hidden_id: foodID});
             // Put the results in a div
