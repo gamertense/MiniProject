@@ -1,14 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <script src="../vendor/js/Chart.bundle.min.js"></script>
-    <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -16,15 +9,14 @@
 require_once('navbar.php');
 require_once('../dbconfig.php');
 ?>
+<link rel="stylesheet" type="text/css" href="../vendor/css/dataTables.bootstrap.min.css">
+    <script src="../vendor/js/Chart.bundle.min.js"></script>
+    <script src="../vendor/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/js/dataTables.bootstrap.min.js"></script>
 <br>
 <div class="container">
-    <!-- <div class="col-md-2 col-md-offset-1">
-        <div class="chart-container" style="position: relative; height:40vh; width:60vw">
-            <canvas id="myChart"></canvas>
-        </div>
-    </div> -->
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="deliveryTable">
             <thead>
             <tr>
             	<th>Order date</th>
@@ -70,28 +62,8 @@ require_once('../dbconfig.php');
 </html>
 
 <script>
+$(document).ready(function() {
     $('#menu1').addClass('active');
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            datasets: [{
-                label: '# of Sales',
-                data: [12, 19, 3, 5, 2, 3, 8, 20, 10, 11, 15, 22],
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                fill: false
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+    $('#deliveryTable').DataTable();
+});
 </script>
