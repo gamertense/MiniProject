@@ -14,19 +14,19 @@ require_once('menu.php');
             echo "failed!";
         $row = mysqli_fetch_array($result);
         ?>
-        <form id="paymentForm" method="post">
+        <form id="paymentForm" method="post" action="php-action/payment.php">
             <div class="col-xs-12 col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"> Payment Details </h3>
                         <div class="checkbox pull-right">
-                            <label><input type="checkbox"/>Remember</label>
+                            <input name="remem" type="checkbox" value="1">Remember
                         </div>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="address">TO ADDRESS:</label>
-                            <textarea class="form-control" rows="3" id="address"
+                            <textarea class="form-control" rows="3" id="address" name="address"
                                       required><?= $row['address'] ?></textarea>
                         </div>
                         <div class="form-group">
@@ -77,18 +77,6 @@ require_once('menu.php');
 </body>
 </html>
 <script>
-    $(document).ready(function () {
-        $("#paymentForm").submit(function (event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-
-            var posting = $.post("php-action/payment.php");
-            posting.done(function () {
-                window.location.replace("food.php");
-            });
-        });
-    });
-
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
