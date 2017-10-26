@@ -23,7 +23,7 @@ if (isset($_FILES["file"]["type"])) {
 //                echo "<b>Size:</b> " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
 //                echo "<b>Temp file:</b> " . $_FILES["file"]["tmp_name"] . "<br>";
 
-                require_once '../dbconfig.php';
+                require_once '../../dbconfig.php';
 
                 $foodName = $_POST['foodName']; //here getting result from the post array after submitting the form.
                 $foodPrice = $_POST['foodPrice'];
