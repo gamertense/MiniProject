@@ -1,4 +1,5 @@
 <?php
+require_once('../dbconfig.php');
 session_start();
 if (isset($_POST['submit']))
     $_SESSION['admin_name'] = $_POST['username'];

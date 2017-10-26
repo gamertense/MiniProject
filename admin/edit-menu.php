@@ -11,7 +11,6 @@
 <body>
 <?php
 require_once('navbar.php');
-include_once '../dbconfig.php';
 
 $query = "SELECT * FROM foods ORDER BY food_id";
 $result = mysqli_query($connect, $query);

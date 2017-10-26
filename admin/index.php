@@ -7,7 +7,6 @@
 <body>
 <?php
 require_once('navbar.php');
-require_once('../dbconfig.php');
 
 if (isset($_POST['isDelivered'])) {
     $isDeli = $_POST['isDelivered'];

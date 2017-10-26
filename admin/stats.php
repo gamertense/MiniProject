@@ -13,8 +13,7 @@
 
 <body>
 <?php
-require_once('navbar.php');
-require_once('../dbconfig.php'); ?>
+require_once('navbar.php'); ?>
 
 <script>
     var month = [];
