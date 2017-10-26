@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../vendor/css/food.css">
     <link rel="stylesheet" type="text/css" href="../vendor/css/menu.css">
+    <style>
+        .col-item .options-cart-round {
+            position: absolute;
+            right: 55%;
+            top: 17%;
+            display: none;
+        }
+
+        .col-item .options-wishlist-round {
+            position: absolute;
+            left: 55%;
+            top: 17%;
+            display: none;
+        }
+    </style>
     <script>
         var products_JSON = [];
     </script>
