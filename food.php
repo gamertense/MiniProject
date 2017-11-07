@@ -19,6 +19,13 @@ if (isset($_POST['Register'])) {
 //        echo "success";
 }
 ?>
+<script src="vendor/js/jquery.slides.min.js"></script>
+<div class="container">
+    <div id="slides">
+        <img src="images/promo1.jpg">
+        <img src="http://placehold.it/940x528">
+    </div>
+</div>
 
 <div class="container" style="width:60%;">
     <h2 align="center">Select food</h2><br>
@@ -86,8 +93,22 @@ if (isset($_POST['Register'])) {
 
     $(document).ready(function () {
         $(".col-sm-4").fadeIn("slow");
+        slideShow();
         initialLoad();
     });
+
+    function slideShow() {
+        $("#slides").slidesjs({
+            width: 940,
+            height: 440, //Original 528
+            play: {
+                active: true,
+                auto: true,
+                interval: 4000,
+                swap: true
+            }
+        });
+    }
 
     function initialLoad() {
         $('#menu1').addClass('active');
