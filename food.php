@@ -23,7 +23,8 @@ if (isset($_POST['Register'])) {
 <div class="container">
     <div id="slides">
         <img src="images/promo1.jpg">
-        <img src="http://placehold.it/940x528">
+        <img src="images/promo2.jpg">
+        <img src="images/promo3.png">
     </div>
 </div>
 
@@ -99,8 +100,8 @@ if (isset($_POST['Register'])) {
 
     function slideShow() {
         $("#slides").slidesjs({
-            width: 940,
-            height: 440, //Original 528
+            width: 740, //Original 940
+            height: 240, //Original 528
             play: {
                 active: true,
                 auto: true,

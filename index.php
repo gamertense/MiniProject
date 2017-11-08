@@ -23,7 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC"}
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
     <a href="index.php" class="w3-bar-item w3-button">HOME</a>
     <a href="food.php" class="w3-bar-item w3-button">MENU</a>
-    <a href="#promotion" class="w3-bar-item w3-button">PROMOTION</a>
+    <a href="food.php" class="w3-bar-item w3-button">PROMOTION</a>
     <a href="#googleMap" class="w3-bar-item w3-button">CONTACT US</a>
   </div>
 </div>
