@@ -9,13 +9,11 @@
 require_once('navbar.php');
 
 if (isset($_POST['isDelivered'])) {
-    $isDeli = $_POST['isDelivered'];
-    foreach ($isDeli as $id) {
-        $sql = "UPDATE orders SET isDelivered = 1 WHERE order_id = $id";
+    $id = $_POST['isDelivered'];
+    $sql = "UPDATE orders SET isDelivered = 1 WHERE order_id = $id";
 
-        if ($connect->query($sql) === FALSE)
-            echo "Error updating record: " . $connect->error;
-    }
+    if ($connect->query($sql) === FALSE)
+        echo "Error updating record: " . $connect->error;
 }
 ?>
 <link rel="stylesheet" type="text/css" href="../vendor/css/dataTables.bootstrap.min.css">
@@ -43,13 +41,17 @@ if (isset($_POST['isDelivered'])) {
                 <?php
                 $query = "SELECT order_id, orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
                           FROM orders o join customer c on c.cu_id = o.cu_id
-                          join foods f on f.food_id = o.food_id having isDelivered = 0";
+                          join foods f on f.food_id = o.food_id";
                 $result = mysqli_query($connect, $query);
                 if (mysqli_num_rows($result) > 0):
                     ?>
                     <input type="hidden" value="<?= $row['order_id'] ?>">
                     <?php
                     while ($row = mysqli_fetch_array($result)):
+                        if($row['isDelivered'] == 1)
+                            $isDelivered = true;
+                        else
+                            $isDelivered = false;
                         ?>
                         <tr>
                             <td><?= $row['orderDate'] ?></td>
@@ -57,15 +59,17 @@ if (isset($_POST['isDelivered'])) {
                             <td><?= $row['f_name'] ?></td>
                             <td><?= $row['quantity'] ?></td>
                             <td><?= $row['address'] ?></td>
-                            <td><input name="isDelivered[]" type="checkbox"
-                                       value="<?= $row['order_id'] ?>" <?php if ($row['isDelivered'] == 1)
-                                    echo "checked"; ?>></td>
+                            <td><button name="isDelivered" value="<?= $row['order_id'] ?>" class="
+                            <?php if($isDelivered) echo "btn btn-success";
+                            else echo "btn btn-danger"; ?>"
+                            <?php if($isDelivered) echo "disabled" ?>>
+                            <?php if($isDelivered) echo "Delivered";
+                            else echo "Not delivered"; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>
                 </tbody>
             </table>
-            <button class="btn btn-success" style="float: right">Update</button>
         </div>
     </div>
 </form>
