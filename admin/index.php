@@ -17,7 +17,6 @@ if (isset($_POST['isDelivered'])) {
 }
 ?>
 <link rel="stylesheet" type="text/css" href="../vendor/css/dataTables.bootstrap.min.css">
-<script src="../vendor/js/Chart.bundle.min.js"></script>
 <script src="../vendor/js/jquery.dataTables.min.js"></script>
 <script src="../vendor/js/dataTables.bootstrap.min.js"></script>
 <br>

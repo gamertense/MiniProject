@@ -79,8 +79,9 @@ require_once('menu.php');
 
             // Put the results in a div
             posting.done(function (data) {
-                alert(data);
-                location.reload();
+                swal('Success!', data, 'success').then(function () {
+                    location.reload();
+                });
             });
         });
     }

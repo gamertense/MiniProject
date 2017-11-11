@@ -132,10 +132,11 @@ require_once('menu.php');
                 contentType: false   // tell jQuery not to set contentType
             }).done(function (data) {
                 if (actionSelector.val() === "checkout")
-                    window.location.replace("payment.php?total=" + <?= $total; ?>);
+                window.location.replace("payment.php?total=" + <?= $total; ?>);
                 else {
-                    alert(data);
-                    window.location.reload();
+                    swal('Success!', data, 'success').then(function () {
+                        location.reload();
+                    });
                 }
             });
         });
