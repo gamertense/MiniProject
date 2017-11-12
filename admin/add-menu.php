@@ -31,7 +31,7 @@ require_once('navbar.php');
 
         <div class="form-group">
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                <button type="submit" class="btn btn-primary btn-block">Add Food</button>
             </div>
         </div>
     </form> <!-- /form -->
