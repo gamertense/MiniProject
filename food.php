@@ -44,7 +44,7 @@ if (isset($_POST['Register'])) {
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
                 ?>
-                <div class="col-md-3 col-sm-4 col-xs-6 col-xss-12 product-col">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-xss-12 food-col">
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">

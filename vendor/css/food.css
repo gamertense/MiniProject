@@ -104,14 +104,14 @@ a:hover.slidesjs-stop {
     color: #9e2020
 }
 
-.product-col {
+.food-col {
     height: 270px;
     float: left;
     border-bottom: 1px dashed #cdcdcd;
     padding: 0;
 }
 
-.product-col:hover {
+.food-col:hover {
     box-shadow: 0 0 16px #ccc;
     border-bottom: 1px dashed #fff;
     background-color: #fff;
