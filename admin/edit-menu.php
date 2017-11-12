@@ -37,8 +37,8 @@ if (mysqli_num_rows($result) > 0):
 endif;
 ?>
 
-<div class="container" style="width:60%;">
-    <form role="search">
+<div class="container">
+    <form role="search" style="width:60%;" class="col-xs-offset-2 col-md-offset-2">
         <div class="input-group">
             <input class="form-control" placeholder="Search" id="foodSearch" data-provide="autocomplete"
                    autocomplete="off">
@@ -64,7 +64,7 @@ endif;
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_array($result)):
                 ?>
-                <div class="col-sm-4" style="display: none;">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-xss-12 food-col">
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
@@ -85,7 +85,6 @@ endif;
                         <div class="info">
                             <div class="row">
                                 <div class="price-details col-md-6">
-                                    <!--                                    <p class="details"> Lorem ipsum dolor sit amet, consectetur.. </p>-->
                                     <h1><?php echo $row["name"]; ?></h1>
                                     <br>
                                     <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
