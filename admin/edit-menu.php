@@ -107,7 +107,7 @@ endif;
 <script>
     $('button[name="editButton"]').click(function (e) {
         var food_id = $(this).val();
-        window.location.href = "edit-food.php?id=" + foo
+        window.location.href = "edit-food.php?id=" + food_id;
     });
 
     $(document).ready(function () {
