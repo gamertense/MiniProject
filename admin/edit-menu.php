@@ -68,7 +68,7 @@ endif;
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
-                                <button name="addButton" class="btn btn-default" title="Edit"
+                                <button name="editButton" class="btn btn-default" title="Edit"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-pencil-square-o"></span>
                                 </button>
@@ -105,6 +105,11 @@ endif;
 
 <script src="../vendor/js/jquery.autocomplete.min.js"></script>
 <script>
+    $('button[name="editButton"]').click(function (e) {
+        var food_id = $(this).val();
+        window.location.href = "edit-food.php?id=" + foo
+    });
+
     $(document).ready(function () {
         $("#foodsForm").submit(function (event) {
             // Stop form from submitting normally
