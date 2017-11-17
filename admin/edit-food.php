@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0)
             <label class="col-sm-3 control-label">Food Name</label>
             <div class="col-sm-9">
                 <input name="foodName" value="<?= $row['name'] ?>" placeholder="Food Name" class="form-control"
-                       autofocus>
+                       autofocus disabled>
                 <span class="help-block">For example, Thai Chicken Basil</span>
             </div>
         </div>

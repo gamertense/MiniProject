@@ -68,13 +68,13 @@ endif;
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
-                                <button name="editButton" class="btn btn-default" title="Edit"
+                                <button name="editButton" class="btn btn-primary" title="Edit"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-pencil-square-o"></span>
                                 </button>
                             </div>
                             <div class="options-wishlist-round">
-                                <button name="removeButton" class="btn btn-default" title="Remove"
+                                <button name="removeButton" class="btn btn-danger" title="Remove"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-trash"></span>
                                 </button>
