@@ -30,7 +30,7 @@ if (!isset($_SESSION['admin_name']))
         <ul class="nav navbar-nav">
             <li id="menu1"><a href="index.php">Delivery status</a></li>
             <li id="menu2"><a href="add-menu.php">Add menu</a></li>
-            <li id="menu3"><a href="remove-menu.php">Remove menu</a></li>
+            <li id="menu3"><a href="edit-menu.php">Edit menu</a></li>
             <li id="menu4"><a href="stats.php">Statistics</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
