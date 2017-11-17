@@ -22,8 +22,8 @@ if (isset($_POST['Register'])) {
 <script src="vendor/js/jquery.slides.min.js"></script>
 <div class="container">
     <div id="slides">
-        <img src="images/promo1.jpg">
-        <img src="images/promo2.jpg">
+        <img src="images/promo1.png">
+        <img src="images/promo2.png">
         <img src="images/promo3.png">
     </div>
 </div>
