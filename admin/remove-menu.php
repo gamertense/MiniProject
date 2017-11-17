@@ -5,16 +5,9 @@
     <link rel="stylesheet" type="text/css" href="../vendor/css/food.css">
     <link rel="stylesheet" type="text/css" href="../vendor/css/menu.css">
     <style>
-        .col-item .options-cart-round {
-            position: absolute;
-            right: 55%;
-            top: 17%;
-            display: none;
-        }
-
         .col-item .options-wishlist-round {
             position: absolute;
-            left: 55%;
+            left: 40%;
             top: 17%;
             display: none;
         }
@@ -49,7 +42,7 @@ endif;
         </div>
     </form>
 
-    <h2 align="center">Select food to edit/remove</h2><br>
+    <h2 align="center">Select food to remove</h2><br>
     <?php
     if (!isset($_GET['s']))
         $query = "SELECT * FROM foods ORDER BY food_id";
@@ -67,14 +60,8 @@ endif;
                 <div class="col-md-3 col-sm-4 col-xs-6 col-xss-12 food-col">
                     <article class="col-item">
                         <div class="photo">
-                            <div class="options-cart-round">
-                                <button name="editButton" class="btn btn-default" title="Edit"
-                                        data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
-                                    <span class="fa fa-pencil-square-o"></span>
-                                </button>
-                            </div>
                             <div class="options-wishlist-round">
-                                <button name="removeButton" class="btn btn-default" title="Remove"
+                                <button name="removeButton" class="btn btn-danger" title="Remove"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-trash"></span>
                                 </button>
@@ -104,42 +91,37 @@ endif;
 
 <script src="../vendor/js/jquery.autocomplete.min.js"></script>
 <script>
-    $('button[name="editButton"]').click(function (e) {
+    $('button[name="removeButton"]').click(function (e) {
         var food_id = $(this).val();
-        window.location.href = "edit-food.php?id=" + food_id;
+
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+        }).then(function () {
+            var posting = $.post("php-action/remove-food.php", {food_id: food_id});
+            posting.done(function (data) {
+                if (data === "success") {
+                    swal(
+                        'Deleted!',
+                        'Your selected food has been deleted.',
+                        'success'
+                    ).then(function () {
+                        location.reload();
+                    });
+                }
+            });
+        })
     });
 
     $(document).ready(function () {
         $("#foodsForm").submit(function (event) {
             // Stop form from submitting normally
             event.preventDefault();
-        });
-
-        $('button[name="removeButton"]').click(function (e) {
-            var food_id = $(this).val();
-
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, remove it!'
-            }).then(function () {
-                var posting = $.post("php-action/remove-food.php", {food_id: food_id});
-                posting.done(function (data) {
-                    if (data === "success") {
-                        swal(
-                            'Deleted!',
-                            'Your selected food has been deleted.',
-                            'success'
-                        ).then(function () {
-                            location.reload();
-                        });
-                    }
-                });
-            })
         });
         initialLoad();
     });
