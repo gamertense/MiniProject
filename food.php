@@ -48,19 +48,19 @@ if (isset($_POST['Register'])) {
                     <article class="col-item">
                         <div class="photo">
                             <div class="options-cart-round">
-                                <button name="addButton" class="btn btn-default" title="Add to cart"
+                                <button name="addButton" class="btn btn-success" title="Add to cart"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-shopping-cart"></span>
                                 </button>
                             </div>
                             <div class="options-wishlist-round">
-                                <button name="wishButton" class="btn btn-default" title="Add to wishlist"
+                                <button name="wishButton" class="btn btn-danger" title="Add to wishlist"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-heart"></span>
                                 </button>
                             </div>
                             <div class="options-info-round">
-                                <button name="infoButton" class="btn btn-default" title="More info"
+                                <button name="infoButton" class="btn btn-primary" title="More info"
                                         data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
                                     <span class="fa fa-search"></span>
                                 </button>
