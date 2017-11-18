@@ -44,6 +44,7 @@ if (isset($_POST['Register'])) {
                 <img src="images/promo3.png">
             </div>
         </div>
+        <script>slideShow()</script>
     <?php } ?>
     <h2 align="center">Select food</h2><br>
     <form method="post" id="foodsForm">
@@ -102,7 +103,6 @@ if (isset($_POST['Register'])) {
 
     $(document).ready(function () {
         $(".col-sm-4").fadeIn("slow");
-        slideShow();
         initialLoad();
     });
 
