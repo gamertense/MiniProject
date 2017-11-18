@@ -35,6 +35,7 @@
                     </div>
                 </form>
             </li>
+            <li><?php require_once('category.php'); ?></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

@@ -30,9 +30,9 @@ if (mysqli_num_rows($result) > 0)
         <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
             <div class="col-sm-9 col-sm-offset-3">
-                <div id="image_preview"><img id="previewing" src="../<?= $row['image'] ?>" height="200"></div>
-                <div id="message"></div>
-            </div>
+            <div id="image_preview"><img id="previewing" src="<?= '../' . $row['image'] ?>"/></div>
+            <input type="file" name="file" id="file" required/>
+        </div>
         </div>
 
         <div class="form-group">
