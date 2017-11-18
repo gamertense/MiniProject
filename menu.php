@@ -155,6 +155,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <p>
+                                            <a href="deliStatus.php" class="btn btn-success btn-block">Delivery status</a>
                                             <a href="profile.php" class="btn btn-primary btn-block">My Profile</a>
                                             <a href="profile.php" class="btn btn-danger btn-block">Change Password</a>
                                         </p>
