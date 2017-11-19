@@ -11,7 +11,7 @@
 <script src="vendor/js/jquery.dataTables.min.js"></script>
 <script src="vendor/js/dataTables.bootstrap.min.js"></script>
 
-<div class="container">
+<div class="container" style="padding-bottom: 30px">
     <div class="table-responsive">
         <table class="table table-hover" id="deliveryTable">
             <thead>

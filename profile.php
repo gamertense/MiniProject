@@ -9,7 +9,7 @@
     $row = mysqli_fetch_array($result); ?>
 </head>
 <body>
-<div class="container">
+<div class="container" style="padding-bottom: 30px">
     <h1 class="page-header">Edit Profile</h1>
     <div class="row">
         <!-- left column -->
@@ -69,6 +69,7 @@
         </div>
     </div>
 </div>
+<?php require_once('footer.php') ?>
 </body>
 </html>
 

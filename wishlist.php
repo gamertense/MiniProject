@@ -9,7 +9,7 @@
 require_once('menu.php');
 ?>
 
-<div class="container" style="width:60%;">
+<div class="container" style="width:60%; padding-bottom: 30px;">
     <h2 align="center">My wishlist</h2>
     <br>
     <?php
@@ -40,10 +40,13 @@ require_once('menu.php');
                 </div>
                 <?php
             endwhile;
+        else:
+            echo "<i><h3 align='center'>Your wishlist is empty.</h3></i>";
         endif;
         ?>
     </form>
 </div>
+<?php require_once('footer.php') ?>
 </body>
 </html>
 

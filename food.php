@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Thai Food Delivery</title>
-    <link rel="stylesheet" type="text/css" href="vendor/css/food.css">
 </head>
 <body>
 <?php
@@ -19,7 +18,7 @@ if (isset($_POST['Register'])) {
 //        echo "success";
 }
 ?>
-<div class="container">
+<div class="container" style="padding-bottom: 30px">
     <?php
     if (isset($_GET['catID'])) {
         $categoryID = $_GET['catID'];

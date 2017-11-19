@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/css/menu.css">
+<link rel="stylesheet" type="text/css" href="vendor/css/food.css">
 <style>
     #foodSearch {
         width: 410px !important;
