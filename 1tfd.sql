@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 11:19 AM
+-- Generation Time: Nov 20, 2017 at 12:13 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -51,7 +51,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
-(1, 'Spicy');
+(1, 'Main course');
 
 -- --------------------------------------------------------
 
@@ -95,10 +95,10 @@ CREATE TABLE `foods` (
 --
 
 INSERT INTO `foods` (`food_id`, `category_id`, `name`, `price`, `image`) VALUES
-(2, 1, 'Som Tam', 30.00, 'food-images/som-tam.jpg'),
-(3, 1, 'Spicy Noodle Salad', 40.00, 'food-images/maxresdefault.jpg'),
-(4, NULL, 'Thai Basil Chicken', 45.00, 'food-images/thai-chicken-basil-recipe.jpg'),
-(5, NULL, 'Tom Yum Koong', 50.00, 'food-images/3161c4_b4d35f6bdc724266969c13020d477eac.jpg'),
+(2, NULL, 'Som Tam', 30.00, 'food-images/som-tam.jpg'),
+(3, NULL, 'Spicy Noodle Salad', 40.00, 'food-images/maxresdefault.jpg'),
+(4, 1, 'Thai Basil Chicken', 45.00, 'food-images/thai-chicken-basil-recipe.jpg'),
+(5, 1, 'Tom Yum Koong', 50.00, 'food-images/3161c4_b4d35f6bdc724266969c13020d477eac.jpg'),
 (7, NULL, 'Porridge With Fish', 35.00, 'food-images/Image.jpg'),
 (8, NULL, 'Thai Spicy Grilled Pork Salad', 50.00, 'food-images/19510377-Moo-Nam-Tok-Thai-Spicy-Grilled-Pork-Salad-signature-dish-in-thailand-Stock-Photo.jpg'),
 (9, NULL, 'Special Fish Cakes', 55.00, 'food-images/Thaifishcakes.jpg'),
