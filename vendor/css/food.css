@@ -257,6 +257,12 @@ a:hover.slidesjs-stop {
     text-decoration: line-through;
 }
 
+.col-item .out-stock {
+    padding-right: 10px;
+    font-size: 16px;
+    float: right;
+}
+
 .col-item .separator {
     border-top: 1px solid #E1E1E1;
 }
@@ -279,7 +285,6 @@ a:hover.slidesjs-stop {
     margin-right: 5px;
 }
 
-
 .footer {
     background: #EDEFF1;
     height: auto;
@@ -289,12 +294,15 @@ a:hover.slidesjs-stop {
     border-bottom: 1px solid #CCCCCC;
     border-top: 1px solid #DDDDDD;
 }
+
 .footer p {
     margin: 0;
 }
+
 .footer img {
     max-width: 100%;
 }
+
 .footer h3 {
     border-bottom: 1px solid #BAC1C8;
     color: #54697E;
@@ -304,6 +312,7 @@ a:hover.slidesjs-stop {
     padding: 10px 0 10px;
     text-transform: uppercase;
 }
+
 .footer ul {
     font-size: 13px;
     list-style-type: none;
@@ -312,13 +321,16 @@ a:hover.slidesjs-stop {
     margin-top: 15px;
     color: #7F8C8D;
 }
+
 .footer ul li a {
     padding: 0 0 5px 0;
     display: block;
 }
+
 .footer a {
     color: #78828D
 }
+
 .supportLi h4 {
     font-size: 20px;
     font-weight: lighter;
@@ -326,6 +338,7 @@ a:hover.slidesjs-stop {
     margin-bottom: 0 !important;
     padding-bottom: 0;
 }
+
 .newsletter-box input#appendedInputButton {
     background: #FFFFFF;
     display: inline-block;
@@ -338,11 +351,13 @@ a:hover.slidesjs-stop {
 .newsletter-box {
     overflow: hidden;
 }
+
 .footer-bottom {
     border-top: 1px solid #DDDDDD;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .payments {
-    font-size: 1.5em;   
+    font-size: 1.5em;
 }
