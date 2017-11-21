@@ -57,28 +57,41 @@ function initialLoad() {
             posting = $.post("php-action/add-wishlist.php", {hidden_id: foodID});
         // Put the results in a div
         posting.done(function (data) {
-            if (data === "success-cart") {
-                swal(
-                    'Added!',
-                    'Your selected food has been added to cart',
-                    'success'
-                ).then(function () {
-                    location.reload();
-                });
-            } else if (data === "success-wishlist") {
-                swal(
-                    'Added!',
-                    'Your selected food has been added to wishlist',
-                    'success'
-                );
-            } else if (data === "already added to wishlist") {
-                swal(
-                    'Food exists!',
-                    'This food is ' + data,
-                    'warning'
-                );
-            } else
-                alert(data)
+            switch (data) {
+                case "out of stock":
+                    swal(
+                        'Error!',
+                        'This food is out of stock.',
+                        'error'
+                    )
+                    break;
+                case "success-cart":
+                    swal(
+                        'Added!',
+                        'Your selected food has been added to cart.',
+                        'success'
+                    ).then(function () {
+                        location.reload();
+                    });
+                    break;
+                case "success-wishlist":
+                    swal(
+                        'Added!',
+                        'Your selected food has been added to wishlist.',
+                        'success'
+                    );
+                    break;
+                case "already added to wishlist":
+                    swal(
+                        'Food exists!',
+                        'This food is ' + data,
+                        'warning'
+                    );
+                    break;
+                default:
+                    alert(data);
+                    break;
+            }
         });
     });
 }
