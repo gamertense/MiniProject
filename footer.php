@@ -1,50 +1,54 @@
+<?php
+$query = "SELECT * FROM category";
+$result = mysqli_query($connect, $query);
+?>
+
 <footer>
     <div class="footer" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                    <!-- <h3> Lorem Ipsum </h3>
                     <ul>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
+                    </ul> -->
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Categories </h3>
+                    <ul>
+                    <?php while ($row = mysqli_fetch_array($result)): ?>
+                        <li><a href="food.php?catID=<?= $row['category_id'] ?>"> <?= $row['category_name'] ?> </a></li>
+                    <?php endwhile; ?>
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                    <!-- <h3> Lorem Ipsum </h3>
                     <ul>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                    <!-- <h3> Lorem Ipsum </h3>
                     <ul>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
                         <li><a href="#"> Lorem Ipsum </a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li><a href="#"> Lorem Ipsum </a></li>
-                        <li><a href="#"> Lorem Ipsum </a></li>
-                        <li><a href="#"> Lorem Ipsum </a></li>
-                        <li><a href="#"> Lorem Ipsum </a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Lorem Ipsum </h3>
+                    <h3> Get newsletter </h3>
                     <ul>
                         <li>
 
                             <input type="text" class="full text-center form-control" placeholder="Email ">
-                            <button class="btn btn-success btn-block" type="button"> Lorem ipsum <i
+                            <button class="btn btn-success btn-block" type="button"> Subscribe <i
                                         class="fa fa-long-arrow-right"> </i></button>
                         </li>
                     </ul>
