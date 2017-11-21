@@ -23,6 +23,9 @@ if (isset($_POST['Register'])) {
     if (isset($_GET['catID'])) {
         $categoryID = $_GET['catID'];
         $query = "SELECT * FROM foods WHERE category_id = $categoryID";
+        $query2 = "SELECT * FROM category WHERE category_id = $categoryID";
+        $result = mysqli_query($connect, $query2);
+        $row = $result->fetch_array();
         $slideShowOn = false;
     } else if (!isset($_GET['s'])) {
         $query = "SELECT * FROM foods ORDER BY food_id";
@@ -45,7 +48,9 @@ if (isset($_POST['Register'])) {
         </div>
         <script>slideShow()</script>
     <?php } ?>
-    <h2 align="center">Select food</h2><br>
+        <h2 align="center">Select food 
+        <?php if(isset($query2))
+            echo "(" . $row['category_name'] . ")"?></h2><br>
     <form method="post" id="foodsForm">
         <?php
         if (mysqli_num_rows($result) > 0):
