@@ -10,7 +10,7 @@ if(isset($_POST['remem'])) {
 	if ($connect->query($query) === FALSE)
 	    echo "Error updating record: " . $connect->error;
 }
-	
+
 $query = "SELECT * FROM cart WHERE cu_id = $cu_id";
 $result = mysqli_query($connect, $query);
 
@@ -22,6 +22,7 @@ while ($row = mysqli_fetch_array($result)) {
     if ($connect->query($query) === FALSE)
         echo "failed!";
 }
+
 $query = "DELETE FROM cart WHERE cu_id = $cu_id";
 if ($connect->query($query) === FALSE)
     echo "failed!";
