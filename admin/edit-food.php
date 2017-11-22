@@ -6,9 +6,7 @@ require_once('navbar.php');
 $food_id = $_GET['id'];
 $query = "SELECT * FROM foods where food_id = 2 ";
 $result = mysqli_query($connect, $query);
-
-if (mysqli_num_rows($result) > 0)
-    $row = $result->fetch_array();
+$row = $result->fetch_array();
 ?>
 
 <div class="container">
@@ -29,10 +27,50 @@ if (mysqli_num_rows($result) > 0)
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
-            <div class="col-sm-9 col-sm-offset-3">
-            <div id="image_preview"><img id="previewing" src="<?= '../' . $row['image'] ?>"/></div>
-            <input type="file" name="file" id="file" required/>
+            <div class="col-sm-9">
+                <div id="image_preview"><img id="previewing" height="250" src="<?= '../' . $row['image'] ?>"/></div>
+            </div>
         </div>
+
+        <?php
+        $ing = $row['ingredients'];
+        $pieces = explode("|", $ing);
+        for ($i = 0; $i < count($pieces); $i++) { ?>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                    <?php if ($i == 0)
+                        echo "Ingredients"; ?>
+                </label>
+                <div class="col-sm-9">
+                    <div class="input-group control-group after-add-more<?php if ($i != 0) echo "1" ?>">
+                        <input type="text" name="ingre[]" value="<?= $pieces[$i] ?>" class="form-control"
+                               placeholder="1/2 tbsp">
+                        <div class="input-group-btn">
+                            <?php if ($i == 0) { ?>
+                                <button class="btn btn-success add-more" type="button"><i
+                                            class="glyphicon glyphicon-plus"></i>
+                                    Add
+                                </button>
+                            <?php } else { ?>
+                                <button class="btn btn-danger remove" type="button"><i
+                                            class="glyphicon glyphicon-remove"></i>
+                                    Remove
+                                </button>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <div class="copy-fields hide">
+            <div class="control-group input-group" style="margin-top:10px">
+                <input type="text" name="ingre[]" class="form-control" placeholder="Enter Name Here">
+                <div class="input-group-btn">
+                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
+                        Remove
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -48,6 +86,10 @@ if (mysqli_num_rows($result) > 0)
 </html>
 
 <script>
+    $(document).ready(function () {
+        ingreFields();
+    });
+
     $("#editFood").on('submit', (function (e) {
         e.preventDefault();
         $.ajax({
@@ -63,4 +105,15 @@ if (mysqli_num_rows($result) > 0)
             }
         });
     }));
+
+    function ingreFields() {
+        $(".add-more").click(function () {
+            var html = $(".copy-fields").html();
+            $(".after-add-more").after(html);
+        });
+        //here it will remove the current value of the remove button which has been pressed
+        $("body").on("click", ".remove", function () {
+            $(this).parents(".control-group").remove();
+        });
+    }
 </script>
