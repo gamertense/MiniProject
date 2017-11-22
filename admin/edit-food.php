@@ -4,7 +4,7 @@
 require_once('navbar.php');
 
 $food_id = $_GET['id'];
-$query = "SELECT * FROM foods where food_id = 2 ";
+$query = "SELECT * FROM foods where food_id = $food_id";
 $result = mysqli_query($connect, $query);
 $row = $result->fetch_array();
 ?>
@@ -44,7 +44,7 @@ $row = $result->fetch_array();
                 <div class="col-sm-9">
                     <div class="input-group control-group after-add-more<?php if ($i != 0) echo "1" ?>">
                         <input type="text" name="ingre[]" value="<?= $pieces[$i] ?>" class="form-control"
-                               placeholder="1/2 tbsp">
+                               placeholder="1/2 cup shredded carrot">
                         <div class="input-group-btn">
                             <?php if ($i == 0) { ?>
                                 <button class="btn btn-success add-more" type="button"><i
@@ -64,7 +64,7 @@ $row = $result->fetch_array();
         <?php } ?>
         <div class="copy-fields hide">
             <div class="control-group input-group" style="margin-top:10px">
-                <input type="text" name="ingre[]" class="form-control" placeholder="Enter Name Here">
+                <input type="text" name="ingre[]" class="form-control" placeholder="1/2 cup shredded carrot">
                 <div class="input-group-btn">
                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
                         Remove
