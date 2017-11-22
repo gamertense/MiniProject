@@ -63,7 +63,7 @@ function initialLoad() {
                         'Error!',
                         'This food is out of stock.',
                         'error'
-                    )
+                    );
                     break;
                 case "success-cart":
                     swal(
