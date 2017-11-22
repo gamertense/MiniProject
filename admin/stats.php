@@ -35,11 +35,11 @@ endif;
 ?>
 <br>
 <div class="container">
-    <div class="col-md-2 col-md-offset-1">
+
         <div class="chart-container" style="position: relative; height:40vh; width:60vw">
             <canvas id="myChart"></canvas>
         </div>
-    </div>
+
 </div>
 </body>
 </html>
@@ -70,3 +70,10 @@ endif;
         }
     });
 </script>
+
+<style>
+    .chart-container {
+        margin: auto;
+        width: 50%;
+    }
+</style>
