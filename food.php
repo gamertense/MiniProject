@@ -88,7 +88,7 @@ if (isset($_POST['Register'])) {
                                     <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
                                 </div>
                                 <div class="out-stock">
-                                    <?php if ($row["out_stock"] == 1): ?>
+                                    <?php if ($row["stock"] == 1): ?>
                                         <span class="price-new text-danger">Out of Stock</span>
                                     <?php endif; ?>
                                 </div>
