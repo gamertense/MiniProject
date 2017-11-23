@@ -20,6 +20,22 @@ $row = $result->fetch_array();
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">Food Category</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="category">
+                    <?php
+                    $cat_id = $row['category_id'];
+                    $query = "SELECT * FROM category";
+                    $result = mysqli_query($connect, $query);
+                    while ($row2 = mysqli_fetch_array($result)):
+                        ?>
+                        <option value="<?= $row2['category_id'] ?>"
+                        <?php if($row2['category_id'] == $cat_id) echo "selected" ?>><?= $row2['category_name'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-9">
                 <input name="foodPrice" value="<?= $row['price'] ?>" placeholder="Price" class="form-control">
