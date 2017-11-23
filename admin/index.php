@@ -27,6 +27,7 @@ if (isset($_POST['isDelivered'])) {
             <table class="table table-hover" id="deliveryTable">
                 <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Order date</th>
                     <th>Customer name</th>
                     <th>Food name</th>
@@ -38,7 +39,7 @@ if (isset($_POST['isDelivered'])) {
                 <tbody>
 
                 <?php
-                $query = "SELECT order_id, orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
+                $query = "SELECT f.image, order_id, orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
                           FROM orders o join customer c on c.cu_id = o.cu_id
                           join foods f on f.food_id = o.food_id";
                 $result = mysqli_query($connect, $query);
@@ -53,6 +54,8 @@ if (isset($_POST['isDelivered'])) {
                             $isDelivered = false;
                         ?>
                         <tr>
+                            <td><img src="../<?= $row["image"]; ?>" class="img-responsive"
+                                 alt="Food image" style="height: 50px;"></td>
                             <td><?= $row['orderDate'] ?></td>
                             <td><?= $row['cu_name'] ?></td>
                             <td><?= $row['f_name'] ?></td>

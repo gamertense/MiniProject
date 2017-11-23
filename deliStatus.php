@@ -16,6 +16,7 @@
         <table class="table table-hover" id="deliveryTable">
             <thead>
             <tr>
+                <th>Image</th>
                 <th>Order date</th>
                 <th>Food name</th>
                 <th>Quantity</th>
@@ -27,7 +28,7 @@
 
             <?php
             $cu_id = $_SESSION["cu_id"];
-            $query = "SELECT order_id, orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
+            $query = "SELECT f.image, order_id, orderDate, c.name as cu_name, f.name as f_name, quantity, address, isDelivered
                           FROM orders o join customer c on c.cu_id = o.cu_id
                           join foods f on f.food_id = o.food_id
                           where c.cu_id = $cu_id";
@@ -43,6 +44,8 @@
                         $isDelivered = false;
                     ?>
                     <tr>
+                        <td><img src="<?= $row["image"]; ?>" class="img-responsive"
+                                 alt="Food image" style="height: 50px;"></td>
                         <td><?= $row['orderDate'] ?></td>
                         <td><?= $row['f_name'] ?></td>
                         <td><?= $row['quantity'] ?></td>
