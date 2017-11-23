@@ -15,7 +15,7 @@ require_once('navbar.php');
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Product Category</label>
+            <label class="col-sm-3 control-label">Food Category</label>
             <div class="col-sm-9">
                 <select class="form-control" name="category">
                     <?php
