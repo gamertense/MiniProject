@@ -15,6 +15,20 @@ require_once('navbar.php');
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">Product Category</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="category">
+                    <?php
+                    $query = "SELECT * FROM category";
+                    $result = mysqli_query($connect, $query);
+                    while ($row = mysqli_fetch_array($result)):
+                        ?>
+                        <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-9">
                 <input name="foodPrice" placeholder="Price" class="form-control">
@@ -22,18 +36,42 @@ require_once('navbar.php');
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
-            <div class="col-sm-9 col-sm-offset-3">
+            <div class="col-sm-9">
                 <div id="image_preview"><img id="previewing" src="../images/no-image.png"/></div>
                 <input type="file" name="file" id="file" required/>
-                <div id="message"></div>
             </div>
         </div>
 
+        <br>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Ingredients</label>
+            <div class="col-sm-9">
+                <div class="input-group control-group after-add-more">
+                    <input type="text" name="ingre[]" class="form-control" placeholder="Enter Name Here">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i>
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-fields hide">
+            <div class="control-group input-group" style="margin-top:10px">
+                <input type="text" name="ingre[]" class="form-control" placeholder="Enter Name Here">
+                <div class="input-group-btn">
+                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-sm-9 col-sm-offset-3">
                 <button type="submit" class="btn btn-primary btn-block">Add Food</button>
             </div>
         </div>
+        <div id="message"></div>
     </form> <!-- /form -->
 </div> <!-- ./container -->
 
@@ -42,6 +80,7 @@ require_once('navbar.php');
 
 <script>
     $(document).ready(function () {
+        ingreFields();
         $('#menu2').addClass('active');
 
         $("#uploadimage").on('submit', (function (e) {
@@ -63,7 +102,7 @@ require_once('navbar.php');
             });
         }));
 
-// Function to preview image after validation
+        // Function to preview image after validation
         $(function () {
             $("#file").change(function () {
                 $("#message").empty(); // To remove the previous error message
@@ -82,13 +121,24 @@ require_once('navbar.php');
                 }
             });
         });
-
-        function imageIsLoaded(e) {
-            $("#file").css("color", "green");
-            $('#image_preview').css("display", "block");
-            $('#previewing').attr('src', e.target.result);
-            $('#previewing').attr('width', '250px');
-            $('#previewing').attr('height', '230px');
-        };
     });
+
+    function ingreFields() {
+        $(".add-more").click(function () {
+            var html = $(".copy-fields").html();
+            $(".after-add-more").after(html);
+        });
+        //here it will remove the current value of the remove button which has been pressed
+        $("body").on("click", ".remove", function () {
+            $(this).parents(".control-group").remove();
+        });
+    }
+
+    function imageIsLoaded(e) {
+        $("#file").css("color", "green");
+        $('#image_preview').css("display", "block");
+        $('#previewing').attr('src', e.target.result);
+        $('#previewing').attr('width', '250px');
+        $('#previewing').attr('height', '230px');
+    }
 </script>
