@@ -31,7 +31,17 @@ $row = $result->fetch_array();
                 <div id="image_preview"><img id="previewing" height="250" src="<?= '../' . $row['image'] ?>"/></div>
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="col-sm-3 control-label">In stock</label>
+            <div class="col-sm-9">
+                <?php if ($row['in_stock'] == 0): ?>
+                    <input name="stock" type="checkbox" value="1">
+                <?php else: ?>
+                    <input name="stock" type="checkbox" value="0" checked>
+                <?php endif; ?>
+            </div>
+        </div>
+        <!--Ingredients section-->
         <?php
         $ing = $row['ingredients'];
         $pieces = explode("|", $ing);
@@ -101,7 +111,9 @@ $row = $result->fetch_array();
             processData: false,        // To send DOMDocument or non processed data file it is set to false
             success: function (data)   // A function to be called if request succeeds
             {
-                swal('Updated!', data, 'success');
+                swal('Updated!', data, 'success').then(function () {
+                    location.reload();
+                });
             }
         });
     }));

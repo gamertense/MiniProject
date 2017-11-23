@@ -7,14 +7,7 @@
     <style>
         .col-item .options-cart-round {
             position: absolute;
-            right: 55%;
-            top: 17%;
-            display: none;
-        }
-
-        .col-item .options-wishlist-round {
-            position: absolute;
-            left: 55%;
+            left: 40%;
             top: 17%;
             display: none;
         }
@@ -73,12 +66,6 @@ endif;
                                     <span class="fa fa-pencil-square-o"></span>
                                 </button>
                             </div>
-                            <div class="options-wishlist-round">
-                                <button name="removeButton" class="btn btn-danger" title="Remove"
-                                        data-toggle="tooltip" value="<?php echo $row["food_id"]; ?>">
-                                    <span class="fa fa-trash"></span>
-                                </button>
-                            </div>
                             <img src="../<?php echo $row["image"]; ?>" class="img-responsive"
                                  alt="Product Image"/>
                         </div>
@@ -90,7 +77,7 @@ endif;
                                     <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
                                 </div>
                                 <div class="out-stock">
-                                    <?php if ($row["stock"] == 1): ?>
+                                    <?php if ($row["in_stock"] == 0): ?>
                                         <span class="price-new text-danger">Out of Stock</span>
                                     <?php endif; ?>
                                 </div>
@@ -120,32 +107,6 @@ endif;
             event.preventDefault();
         });
 
-        $('button[name="removeButton"]').click(function (e) {
-            var food_id = $(this).val();
-
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, remove it!'
-            }).then(function () {
-                var posting = $.post("php-action/remove-food.php", {food_id: food_id});
-                posting.done(function (data) {
-                    if (data === "success") {
-                        swal(
-                            'Deleted!',
-                            'Your selected food has been deleted.',
-                            'success'
-                        ).then(function () {
-                            location.reload();
-                        });
-                    }
-                });
-            })
-        });
         initialLoad();
     });
 
