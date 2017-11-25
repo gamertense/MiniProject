@@ -63,12 +63,9 @@ require_once('menu.php');
 
                     </div>
                 </div>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><span class="badge pull-right">฿<?= $_GET['total']; ?></span>Total
-                            Price</a>
-                    </li>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info"><span class="badge pull-right">฿<?= $_GET['total']; ?></span>Total</li>
                 </ul>
-                <br/>
                 <button class="btn btn-success btn-lg btn-block">Pay</button>
             </div>
         </form>
@@ -87,10 +84,6 @@ require_once('menu.php');
     }
 </script>
 <style>
-    a {
-        cursor: default;
-    }
-
     .panel-title {
         display: inline;
         font-weight: bold;

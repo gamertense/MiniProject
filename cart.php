@@ -30,7 +30,7 @@ require_once('menu.php');
             </div>
             <?php
             $cu_id = $_SESSION["cu_id"];
-            $query = "SELECT foods.food_id, name, price, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id where cu_id = $cu_id";
+            $query = "SELECT foods.food_id, name, price, discount, image, quantity FROM foods INNER JOIN cart on foods.food_id = cart.food_id where cu_id = $cu_id";
             $result = mysqli_query($connect, $query);
             $total = 0;
             if (mysqli_num_rows($result) > 0): ?>
@@ -43,7 +43,10 @@ require_once('menu.php');
                             <div class="col-xs-4">
                                 <h4 class="product-name"><strong><?= $row["name"]; ?></strong></h4>
                                 <h4>
-                                    <small>Food description</small>
+                                    <small>
+                                        Discount <?php if ($row["discount"] == 0) echo "0"; else echo $row["discount"]; ?>
+                                        %
+                                    </small>
                                 </h4>
                             </div>
                             <div class="col-xs-6">
@@ -68,7 +71,8 @@ require_once('menu.php');
                         <hr>
                     </div>
                     <?php
-                    $total += $row['price'] * $row["quantity"];
+                    $discount = $row['price'] * ($row["discount"] / 100);
+                    $total += ($row['price'] - $discount) * $row["quantity"];
                 endwhile;
                 ?>
                 <input type="hidden" name="action" value="updateQty">
@@ -132,7 +136,7 @@ require_once('menu.php');
                 contentType: false   // tell jQuery not to set contentType
             }).done(function (data) {
                 if (actionSelector.val() === "checkout")
-                window.location.replace("payment.php?total=" + <?= $total; ?>);
+                    window.location.replace("payment.php?total=" + <?= $total; ?>);
                 else {
                     swal('Success!', data, 'success').then(function () {
                         location.reload();

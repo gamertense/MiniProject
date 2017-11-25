@@ -30,7 +30,7 @@ $row = $result->fetch_array();
                     while ($row2 = mysqli_fetch_array($result)):
                         ?>
                         <option value="<?= $row2['category_id'] ?>"
-                        <?php if($row2['category_id'] == $cat_id) echo "selected" ?>><?= $row2['category_name'] ?></option>
+                            <?php if ($row2['category_id'] == $cat_id) echo "selected" ?>><?= $row2['category_name'] ?></option>
                     <?php endwhile; ?>
                 </select>
             </div>
@@ -39,6 +39,12 @@ $row = $result->fetch_array();
             <label class="col-sm-3 control-label">Price</label>
             <div class="col-sm-9">
                 <input name="foodPrice" value="<?= $row['price'] ?>" placeholder="Price" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Discount (%)</label>
+            <div class="col-sm-9">
+                <input name="discount" value="<?= $row['discount'] ?>" class="form-control" type="number" min="0">
             </div>
         </div>
         <div class="form-group">

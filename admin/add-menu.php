@@ -35,6 +35,12 @@ require_once('navbar.php');
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">Discount (%)</label>
+            <div class="col-sm-9">
+                <input name="discount" class="form-control" type="number" value="0" min="0">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label">Image File</label>
             <div class="col-sm-9">
                 <div id="image_preview"><img id="previewing" src="../images/no-image.png"/></div>

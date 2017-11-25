@@ -85,11 +85,19 @@ if (isset($_POST['Register'])) {
                                     <!--                                    <p class="details"> Lorem ipsum dolor sit amet, consectetur.. </p>-->
                                     <h1><?php echo $row["name"]; ?></h1>
                                     <br>
-                                    <span class="price-new text-danger">฿<?php echo $row["price"]; ?></span>
+                                    <span class="price-new text-danger">฿<?php
+                                        $discount = $row["discount"];
+                                        $p_new = $row["price"] - ($row['price'] * ($discount / 100));
+                                        echo $p_new . '.00'; ?></span>
                                 </div>
                                 <div class="out-stock">
                                     <?php if ($row["in_stock"] == 0): ?>
-                                        <span class="price-new text-danger">Out of Stock</span>
+                                        <span class="stock text-danger">Out of Stock</span>
+                                    <?php elseif($row["discount"] != 0):
+                                        ?>
+                                        <span class="price-old">฿<?= $row["price"] ?></span>
+                                        <br>
+                                        <span class="discount">Discount <?= $discount ?>%</span>
                                     <?php endif; ?>
                                 </div>
                             </div>

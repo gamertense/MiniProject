@@ -27,6 +27,7 @@ if (isset($_FILES["file"]["type"])) {
 
                 $foodName = $_POST['foodName']; //here getting result from the post array after submitting the form.
                 $foodPrice = $_POST['foodPrice'];
+                $discount = $_POST['discount'];
                 //Fix file target in database
                 $targetPath = "food-images/" . $_FILES['file']['name']; // Target path where file is to be stored
                 //Category
@@ -37,7 +38,7 @@ if (isset($_FILES["file"]["type"])) {
                 $ingre = implode("|", $ingreArray);
 
                 try {
-                    $stmt = $connect->prepare("INSERT INTO foods (category_id, name, image, price, ingredients) VALUES ($category, '$foodName', '$targetPath', $foodPrice, '$ingre')");
+                    $stmt = $connect->prepare("INSERT INTO foods (category_id, name, image, price, discount, ingredients) VALUES ($category, '$foodName', '$targetPath', $foodPrice, $discount, '$ingre')");
 
 
                     if ($stmt->execute()) {

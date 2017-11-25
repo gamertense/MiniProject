@@ -105,7 +105,7 @@ a:hover.slidesjs-stop {
 }
 
 .food-col {
-    height: 270px;
+    height: 290px;
     float: left;
     border-bottom: 1px dashed #cdcdcd;
     padding: 0;
@@ -233,7 +233,7 @@ a:hover.slidesjs-stop {
 }
 
 .col-item .price-details h1 {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     margin: 0;
     float: left;
@@ -249,17 +249,26 @@ a:hover.slidesjs-stop {
 }
 
 .col-item .price-details .price-new {
-    font-size: 16px;
-}
-
-.col-item .price-details .price-old {
     font-size: 18px;
-    text-decoration: line-through;
 }
 
 .col-item .out-stock {
     padding-right: 10px;
-    font-size: 16px;
+    float: right;
+}
+
+.col-item .out-stock .stock {
+    font-size: 18px;
+}
+
+.col-item .out-stock .price-old {
+    margin-right: 5px;
+    text-decoration: line-through;
+    float: right;
+}
+
+.col-item .out-stock .discount {
+    margin: 5px;
     float: right;
 }
 

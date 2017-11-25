@@ -4,6 +4,7 @@ include_once '../../dbconfig.php';
 $id = $_POST['foodID'];
 $catID = $_POST['category'];
 $foodPrice = $_POST['foodPrice'];
+$discount = $_POST['discount'];
 $stock = 0;
 if (isset($_POST['stock']))
     $stock = $_POST['stock'];
@@ -12,7 +13,7 @@ array_pop($ingreArray);
 $ingre = implode("|", $ingreArray);
 
 try {
-    $stmt = $connect->prepare("UPDATE foods SET category_id = $catID, price = $foodPrice, in_stock = $stock, ingredients = '$ingre' WHERE food_id = $id");
+    $stmt = $connect->prepare("UPDATE foods SET category_id = $catID, price = $foodPrice, discount = $discount, in_stock = $stock, ingredients = '$ingre' WHERE food_id = $id");
 
     if ($stmt->execute()) {
         echo "Successfully updated!";
