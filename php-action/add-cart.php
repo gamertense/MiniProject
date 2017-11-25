@@ -4,7 +4,7 @@ include_once '../dbconfig.php';
 
 $cu_id = $_SESSION["cu_id"];
 $food_id = $_POST['hidden_id'];
-$query = "SELECT * FROM foods WHERE food_id = '$food_id' and out_stock = 1";
+$query = "SELECT * FROM foods WHERE food_id = '$food_id' and in_stock = 0";
 $result = mysqli_query($connect, $query);
 
 if (mysqli_num_rows($result) > 0) {
