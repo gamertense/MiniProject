@@ -41,6 +41,7 @@ $row = $result->fetch_array();
         </form>
     </div>
 </div>
+<?php require_once('comment.php') ?>
 </body>
 </html>
 
