@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2017 at 03:22 PM
+-- Generation Time: Nov 28, 2017 at 03:27 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -103,10 +103,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cu_id`, `usertype`, `email`, `password`, `name`, `address`, `disable`) VALUES
-(1, 'user', 'a@a.com', '123', 'Antonio Jack', 'This is my new address23', 0),
-(2, 'user', 'b@b.com', '123', 'John Doe', 'John Doe\'s address', 1),
+(1, 'customer', 'a@a.com', '123', 'Antonio Jack', 'This is my new address23', 0),
+(2, 'customer', 'b@b.com', '123', 'John Doe', 'John Doe\'s address', 1),
 (3, 'admin', 'c@c.com', '123', 'Jane Doe', 'Jane Doe\'s address', 0),
-(4, 'user', 'd@d.com', '123', 'NewCustomer', 'address2', 0);
+(4, 'customer', 'd@d.com', '123', 'NewCustomer', 'address2', 0);
 
 -- --------------------------------------------------------
 
