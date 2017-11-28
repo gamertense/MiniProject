@@ -92,6 +92,8 @@ require_once('menu.php');
         </div>
     </div>
     <?php
+    else:
+        echo "<center>Your cart is empty</center>";
     endif;
     ?>
 </div>
