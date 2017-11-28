@@ -32,6 +32,15 @@ if (!isset($_SESSION['admin_name']))
             <li id="menu2"><a href="add-menu.php">Add menu</a></li>
             <li id="menu3"><a href="edit-menu.php">Edit menu</a></li>
             <li id="menu4"><a href="stats.php">Statistics</a></li>
+
+            <li id="menu5" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">User
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="addadmin.php">Add admin</a></li>
+                    <li><a href="edituser.php">Edit user status</a></li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
