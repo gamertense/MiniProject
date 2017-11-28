@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2017 at 01:05 PM
+-- Generation Time: Nov 28, 2017 at 03:22 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -34,6 +34,13 @@ CREATE TABLE `cart` (
   `food_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cu_id`, `food_id`, `quantity`) VALUES
+(4, 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -72,8 +79,8 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`com_id`, `com_name`, `com_comment`, `food_id`) VALUES
-(22, 'pon', 'test', 2),
-(27, 'Antonio Jack', 'awetwet', 2);
+(1, 'Antonio Jack', 'testawerawer', 2),
+(2, 'John Doe', 'test', 2);
 
 -- --------------------------------------------------------
 
@@ -98,7 +105,8 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`cu_id`, `usertype`, `email`, `password`, `name`, `address`, `disable`) VALUES
 (1, 'user', 'a@a.com', '123', 'Antonio Jack', 'This is my new address23', 0),
 (2, 'user', 'b@b.com', '123', 'John Doe', 'John Doe\'s address', 1),
-(3, 'admin', 'c@c.com', '123', 'Jane Doe', 'Jane Doe\'s address', 0);
+(3, 'admin', 'c@c.com', '123', 'Jane Doe', 'Jane Doe\'s address', 0),
+(4, 'user', 'd@d.com', '123', 'NewCustomer', 'address2', 0);
 
 -- --------------------------------------------------------
 
@@ -157,37 +165,32 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `cu_id`, `food_id`, `orderDate`, `quantity`, `isDelivered`) VALUES
-(1, 3, 2, '2017-01-22', 1, 0),
-(2, 1, 2, '2017-01-22', 2, 1),
-(3, 2, 2, '2017-02-22', 3, 0),
-(4, 2, 2, '2017-03-22', 3, 0),
-(5, 2, 2, '2017-03-22', 2, 0),
-(6, 1, 2, '2017-04-22', 2, 0),
-(7, 1, 2, '2017-04-22', 3, 0),
-(8, 2, 2, '2017-04-22', 2, 0),
-(9, 3, 2, '2017-04-22', 2, 0),
-(10, 3, 2, '2017-04-22', 3, 0),
-(11, 3, 3, '2017-05-22', 2, 0),
-(12, 1, 3, '2017-05-22', 1, 0),
-(13, 1, 3, '2017-05-22', 1, 0),
-(14, 3, 3, '2017-06-22', 1, 0),
-(15, 2, 3, '2017-07-22', 2, 0),
-(16, 2, 4, '2017-07-22', 3, 0),
-(17, 1, 4, '2017-07-22', 1, 0),
-(18, 3, 4, '2017-08-22', 3, 0),
-(19, 3, 4, '2017-08-22', 3, 0),
-(20, 1, 4, '2017-08-22', 3, 0),
-(21, 3, 4, '2017-09-22', 2, 0),
-(22, 1, 4, '2017-09-22', 1, 0),
-(23, 2, 4, '2017-09-22', 1, 0),
-(24, 2, 4, '2017-09-22', 2, 0),
-(25, 2, 4, '2017-09-22', 2, 0),
-(26, 1, 2, '2017-10-22', 1, 0),
-(27, 3, 3, '2017-10-22', 3, 0),
-(28, 3, 4, '2017-10-22', 2, 0),
-(29, 1, 5, '2017-10-22', 1, 0),
-(30, 2, 7, '2017-10-22', 1, 0),
-(31, 3, 15, '2017-10-25', 1, 0);
+(1, 3, 9, '2017-01-22', 3, 0),
+(2, 2, 3, '2017-01-22', 1, 0),
+(3, 3, 4, '2017-02-22', 3, 0),
+(4, 2, 5, '2017-02-22', 1, 0),
+(5, 3, 15, '2017-02-22', 3, 0),
+(6, 1, 4, '2017-03-22', 1, 0),
+(7, 2, 2, '2017-03-22', 1, 0),
+(8, 2, 8, '2017-03-22', 1, 0),
+(9, 2, 18, '2017-04-22', 3, 0),
+(10, 1, 3, '2017-04-22', 2, 0),
+(11, 1, 18, '2017-05-22', 2, 0),
+(12, 1, 18, '2017-05-22', 3, 0),
+(13, 1, 18, '2017-05-22', 2, 0),
+(14, 1, 12, '2017-06-22', 2, 0),
+(15, 1, 9, '2017-06-22', 3, 0),
+(16, 3, 2, '2017-07-22', 3, 0),
+(17, 2, 10, '2017-07-22', 2, 0),
+(18, 2, 15, '2017-07-22', 3, 0),
+(19, 2, 7, '2017-07-22', 1, 0),
+(20, 2, 17, '2017-08-22', 1, 0),
+(21, 3, 11, '2017-09-22', 1, 0),
+(22, 3, 12, '2017-09-22', 1, 0),
+(23, 3, 10, '2017-10-22', 3, 0),
+(24, 1, 7, '2017-10-22', 2, 0),
+(25, 3, 12, '2017-10-22', 2, 0),
+(26, 3, 7, '2017-10-22', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -261,7 +264,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -273,13 +276,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -291,7 +294,7 @@ ALTER TABLE `foods`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
